@@ -13,7 +13,7 @@ class MatchesList extends React.Component{
   buttonText = () => {
     return isPredicted === true ? 'Edit Prediction' : 'Make Prediction'
   }
-  
+
   renderAdmin(){
     return (
       <div className="right floated content">
