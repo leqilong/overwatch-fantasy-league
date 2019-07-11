@@ -29,7 +29,7 @@ class MatchesList extends React.Component{
       </Link>
     )
   }
-
+s
   renderMatchesList(){
     return this.props.matches.map(match =>{
       return(
