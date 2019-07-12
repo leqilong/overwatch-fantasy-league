@@ -16,7 +16,7 @@ const App = () =>{
           <Header />
           <Switch>
             <Route path="/" exact component={MatchesList} />
-            <Route path="/matches/:id/predict" exact component={PredictionCreate} />
+            <Route path="/matches/predict/:id" exact component={PredictionCreate} />
             <Route path="/rules" exact component={Rules} />
             <Route path="/leaderboard" exact component={LeaderBoard} />
           </Switch>

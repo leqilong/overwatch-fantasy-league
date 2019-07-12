@@ -9,32 +9,22 @@ class MatchesList extends React.Component{
 
   componentDidMount(){
     this.props.fetchMatches();
-    console.log(this.props.fetchMatches());
   }
 
   buttonText = () => {
     return isPredicted === true ? 'Edit Prediction' : 'Make Prediction'
   }
 
-  predictionId = () => {
-    return isPredicted === true ? '/1' : ''
-  }
-
-  renderAdmin(){
+  renderAdmin(match){
     return (
-      <Link to={`/predictions${this.predictionId()}`} className="header">
-        <div className="right floated content">
-          <button className="ui button primary">{this.buttonText()}</button>
-        </div>
-      </Link>
+      <Link to={`/matches/predict/${match.id}`} className="ui button primary">{this.buttonText()}</Link>
     )
   }
-s
   renderMatchesList(){
     return this.props.matches.map(match =>{
       return(
-        <div className="item">
-          {this.renderAdmin()}
+        <div className="item" key={match.id}>
+          {this.renderAdmin(match)}
           <div className="content">
             <div className="item">
               <p>{match['competitors'][0]['name']}</p>

@@ -6,6 +6,8 @@ module.exports = {
     const baseUrlConfig = config.baseUrl;
     const params = config.params;
 
+    baseUrlConfig['path'] = '/schedule';
+
     return url.format({
       protocol: baseUrlConfig.protocol,
       hostname: baseUrlConfig.hostname,
@@ -13,5 +15,19 @@ module.exports = {
       query: params
     });
 
+  },
+
+  generateFetchMatchURL: function(id){
+    const baseUrlConfig = config.baseUrl;
+    const params = config.params;
+
+    baseUrlConfig['path'] = '/match/' + id.toString();
+
+    return url.format({
+      protocol: baseUrlConfig.protocol,
+      hostname: baseUrlConfig.hostname,
+      pathname: baseUrlConfig.path,
+      query: params
+    });
   }
 }

@@ -7,7 +7,7 @@ module.exports = (app) => {
     fetch(matchesURL)
       .then(res => res.json())
       .then(data => {
-        res.send({data});
+        res.send(data['data']['stages'][4]['matches']);
       })
       .catch(err => {
         res.redirect('/error');
