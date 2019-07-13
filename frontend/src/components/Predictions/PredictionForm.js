@@ -33,6 +33,28 @@ class PredictionForm extends React.Component{
     return this.props.matchData["competitors"][index]["name"];
   }
 
+  renderMatchScoreDropdown = (index, props) => {
+    return(
+      <Field name="matchScore" component={props =>
+        <div>
+          <SelectField
+            value={props.event}
+            floatingLabelText = {this.renderTeamValues(index)}
+            errorText = {props.touched && props.error}
+            {...props}
+            onChange = {(event, index, value) => props = event}
+          >
+            <MenuItem value="0" primaryText="0" />
+            <MenuItem value="1" primaryText="1" />
+            <MenuItem value="2" primaryText="2" />
+            <MenuItem value="3" primaryText="3" />
+            <MenuItem value="4" primaryText="4" />
+          </SelectField>
+        </div>
+      }/>
+    )
+  }
+
   render(){
     return(
       <form className="ui form error" onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -42,32 +64,8 @@ class PredictionForm extends React.Component{
             <RadioButton value={this.renderTeamValues(1)} label={this.renderTeamLogo(1)} />
           </Field>
         </div>
-        <div>
-          <Field
-            name="finalScoreTeam1"
-            component={SelectField}
-            hintText="0"
-            floatingLabelText={this.renderTeamValues(0)}
-          >
-            <MenuItem value="0" primaryText="0" />
-            <MenuItem value="1" primaryText="1" />
-            <MenuItem value="2" primaryText="2" />
-            <MenuItem value="3" primaryText="3" />
-            <MenuItem value="4" primaryText="4" />
-          </Field>
-          <Field
-            name="finalScoreTeam2"
-            component={SelectField}
-            hintText="0"
-            floatingLabelText={this.renderTeamValues(1)}
-          >
-            <MenuItem value="0" primaryText="0" />
-            <MenuItem value="1" primaryText="1" />
-            <MenuItem value="2" primaryText="2" />
-            <MenuItem value="3" primaryText="3" />
-            <MenuItem value="4" primaryText="4" />
-          </Field>
-        </div>
+          {this.renderMatchScoreDropdown(0, this.props)}
+          {this.renderMatchScoreDropdown(1, this.props)}
         <button className="ui button primary">Submit</button>
       </form>
     )
