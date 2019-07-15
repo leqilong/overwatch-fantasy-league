@@ -1,21 +1,22 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {RadioButtonGroup, SelectField} from 'redux-form-material-ui';
+import {SelectField} from 'redux-form-material-ui';
 import MenuItem from 'material-ui/MenuItem';
-import {RadioButton} from 'material-ui/RadioButton';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
 class PredictionForm extends React.Component{
   onSubmit = (formValues) => {
     this.props.onSubmit(formValues);
   };
 
-  childContextTypes:{
-    muiTheme: React.PropTypes.object.isRequired,
-  }
-
-  getChildContext() {
-    return {muiTheme: getMuiTheme()};
+  renderError({error, touched}){
+    if(touched && error){
+      return(
+        <div className="ui error message">
+          <div className="header">{error}</div>
+        </div>
+      )
+    }
   }
 
   renderTeamLogo = index => {
@@ -35,31 +36,56 @@ class PredictionForm extends React.Component{
 
   renderMatchScoreDropdown = (index, props) => {
     return(
-      <Field name="matchScore" component={props =>
+      <Field name={this.renderTeamValues(index)} component={props =>
         <div>
           <SelectField
-            value={props.event}
+            value={props.input.value}
             floatingLabelText = {this.renderTeamValues(index)}
             errorText = {props.touched && props.error}
             {...props}
-            onChange = {(event, index, value) => props = event}
+            onChange = {(event, index, value) => console.log(props.input.value)}
           >
-            <MenuItem value="0" primaryText="0" />
-            <MenuItem value="1" primaryText="1" />
-            <MenuItem value="2" primaryText="2" />
-            <MenuItem value="3" primaryText="3" />
-            <MenuItem value="4" primaryText="4" />
+            {this.renderMenuItem()}
           </SelectField>
+          <button className="ui button primary" onClick={()=> this.props.resetSection(this.renderTeamValues(index))}>Reset</button>
         </div>
       }/>
     )
   }
 
+  renderMenuItem = () => {
+    let menu = [];
+    const scores = ["0", "1", "2", "3", "4"];
+    scores.map(score => {
+      menu.push(<MenuItem key={score} value={score} primaryText={score} />)
+    });
+    return menu;
+  }
+
+  renderError({error, touched}){
+    if(touched && error){
+      return(
+        <div className="ui error message">
+          <div className="header">{error}</div>
+        </div>
+      )
+    }
+  }
+
   render(){
+    const renderRadioGroup = ({ input, meta: {touched, error}, ...rest}) => (
+      <div>
+        <RadioButtonGroup {...input} {...rest}
+          valueSelected={input.value}
+          onChange={(event, value) => input.onChange(value)}
+        />
+        {this.renderError({touched, error})}
+      </div>
+    )
     return(
       <form className="ui form error" onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <div>
-          <Field name="seriesWinner" component={RadioButtonGroup} label="Series Winner:">
+          <Field name="seriesWinner" component={renderRadioGroup} label="Series Winner:">
             <RadioButton value={this.renderTeamValues(0)} label={this.renderTeamLogo(0)} />
             <RadioButton value={this.renderTeamValues(1)} label={this.renderTeamLogo(1)} />
           </Field>
@@ -73,7 +99,7 @@ class PredictionForm extends React.Component{
 };
 
 
-const validate = (formValues)=>{
+const validate = formValues =>{
   const errors = {};
   if (!formValues.seriesWinner){
     errors.seriesWinner = 'You must select a series winner';

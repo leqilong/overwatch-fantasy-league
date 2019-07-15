@@ -11,11 +11,14 @@ const Header = () => {
         Overwatch Fantasy League
       </Link>
       <div className="right menu">
+        <Link to="/pastPredictions" className="item">
+          Past Predictions
+        </Link>
         <Link to="/rules" className="item">
-          <Rules />
+          Rules
         </Link>
         <Link to="/leaderboard" className="item">
-          <LeaderBoard />
+          LeaderBoard
         </Link>
         <Authentication />
       </div>

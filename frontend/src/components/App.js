@@ -5,7 +5,7 @@ import Rules from './Header/Rules';
 import LeaderBoard from './Header/LeaderBoard';
 import MatchesList from './Predictions/MatchesList';
 import PredictionCreate from './Predictions/PredictionCreate';
-
+import PastPredictions from './Predictions/PastPredictions';
 import history from '../history';
 
 const App = () =>{
@@ -16,9 +16,10 @@ const App = () =>{
           <Header />
           <Switch>
             <Route path="/" exact component={MatchesList} />
-            <Route path="/matches/predict/:id" exact component={PredictionCreate} />
             <Route path="/rules" exact component={Rules} />
             <Route path="/leaderboard" exact component={LeaderBoard} />
+            <Route path="/pastPredictions" exact component={PastPredictions} />
+            <Route path="/matches/predict/:id" exact component={PredictionCreate} />
           </Switch>
         </div>
       </Router>

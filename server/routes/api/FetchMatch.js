@@ -3,7 +3,7 @@ const generateFetchMatchURL = require('../../util/GenerateOverwatchLeagueURL').g
 
 module.exports = (app) => {
   app.get('/matches/:id', (req, res) => {
-    const matchURL = generateFetchMatchURL(id);
+    const matchURL = generateFetchMatchURL(req.params.id);
     fetch(matchURL)
       .then(res => res.json())
       .then(data => {

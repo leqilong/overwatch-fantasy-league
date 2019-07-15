@@ -5,12 +5,11 @@ import PredictionForm from './PredictionForm';
 
 class PredictionCreate extends React.Component {
   componentDidMount(){
-    console.log(this.props.match)
     this.props.fetchMatch(this.props.match.params.id)
   }
 
   onSubmit = formValues => {
-    this.props.createPrediction(formValues);
+    this.props.createPrediction({formValues, 'match_id': this.props.match.params.id});
   }
   render(){
     if(!this.props.competition){
@@ -28,7 +27,6 @@ class PredictionCreate extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps)
   return {
     competition: state.matches[ownProps.match.params.id]
   }
