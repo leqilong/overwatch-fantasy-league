@@ -1,7 +1,8 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {SelectField} from 'redux-form-material-ui';
+//import {SelectField} from 'redux-form-material-ui';
 import MenuItem from 'material-ui/MenuItem';
+import SelectField from 'material-ui/SelectField';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
 class PredictionForm extends React.Component{
@@ -34,28 +35,28 @@ class PredictionForm extends React.Component{
     return this.props.matchData["competitors"][index]["name"];
   }
 
-  renderMatchScoreDropdown = (index, props) => {
+  renderMatchScoreDropdown = ({input, label, meta}) => {
+    console.log('PredictionForm props:');
+    console.log(input.value);
     return(
-      <Field name={this.renderTeamValues(index)} component={props =>
-        <div>
-          <SelectField
-            value={props.input.value}
-            floatingLabelText = {this.renderTeamValues(index)}
-            errorText = {props.touched && props.error}
-            {...props}
-            onChange = {(event, index, value) => console.log(props.input.value)}
-          >
-            {this.renderMenuItem()}
-          </SelectField>
-          <button className="ui button primary" onClick={()=> this.props.resetSection(this.renderTeamValues(index))}>Reset</button>
-        </div>
-      }/>
+      <div>
+        <SelectField
+          value = {input.value}
+          floatingLabelText = {label}
+          errorText = {meta.touched && meta.error}
+          {...input}
+          onChange={(event, index, value) => input.onChange(value)}
+        >
+          {this.renderMenuItem()}
+        </SelectField>
+        <button className="ui button primary" onClick={()=> this.props.resetSection(`${label}`)}>Reset</button>
+      </div>
     )
   }
-
+  
   renderMenuItem = () => {
     let menu = [];
-    const scores = ["0", "1", "2", "3", "4"];
+    const scores = [0, 1, 2, 3, 4];
     scores.map(score => {
       menu.push(<MenuItem key={score} value={score} primaryText={score} />)
     });
@@ -90,8 +91,8 @@ class PredictionForm extends React.Component{
             <RadioButton value={this.renderTeamValues(1)} label={this.renderTeamLogo(1)} />
           </Field>
         </div>
-          {this.renderMatchScoreDropdown(0, this.props)}
-          {this.renderMatchScoreDropdown(1, this.props)}
+        <Field name="seriesScoreTeam1" component={this.renderMatchScoreDropdown} label={this.renderTeamValues(0)} />
+        <Field name="seriesScoreTeam2" component={this.renderMatchScoreDropdown} label={this.renderTeamValues(1)} />
         <button className="ui button primary">Submit</button>
       </form>
     )

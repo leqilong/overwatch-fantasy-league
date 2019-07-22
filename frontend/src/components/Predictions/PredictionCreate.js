@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchMatch, createPrediction} from '../../actions';
+import {fetchMatch, createPrediction} from '../../actions/PredictionsActions';
 import PredictionForm from './PredictionForm';
 
 class PredictionCreate extends React.Component {
@@ -9,7 +9,7 @@ class PredictionCreate extends React.Component {
   }
 
   onSubmit = formValues => {
-    this.props.createPrediction({formValues, 'match_id': this.props.match.params.id});
+    this.props.createPrediction({formValues, 'matchId': this.props.match.params.id});
   }
   render(){
     if(!this.props.competition){

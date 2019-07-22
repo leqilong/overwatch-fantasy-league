@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const predictionSchema = new mongoose.Schema({
-  match_id: {
+  matchId: {
     type: Number,
     required: true
   },
-  user_id: {
-    type: Number,
+  username: {
+    type: String,
     required: true
   },
   seriesWinner: {
@@ -14,11 +14,7 @@ const predictionSchema = new mongoose.Schema({
     required: true
   },
   seriesScoreTeam1: Number,
-  seriesScoreTeam2: Number,
-  map1Winner: String,
-  map2Winner: String,
-  map3Winner: String,
-  map4Winner: String
+  seriesScoreTeam2: Number
 })
 
 mongoose.model('Prediction', predictionSchema);

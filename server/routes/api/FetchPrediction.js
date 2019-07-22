@@ -1,9 +1,9 @@
 const predictionsController = require('../../controllers/PredictionsController');
 const authCheckMiddleware = require('../../middleware/AuthCheck');
 module.exports = (app) => {
-  app.get('/predictions', authCheckMiddleware, (req, res) => {
-    const filter = {"username": req.userData.username}
-    predictionsController.find(filter, function(err, results){
+  app.get('/predictions/:id', authCheckMiddleware, (req, res) => {
+    const filter = {"matchId": req.params.id, "username": req.userData.username};
+    predictionsController.findByMatchId(filter, function(err, results){
         if(err){
             console.log(err);
             res.json({

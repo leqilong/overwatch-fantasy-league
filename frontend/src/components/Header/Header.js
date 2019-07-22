@@ -1,29 +1,43 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Rules from './Rules';
-import LeaderBoard from './LeaderBoard';
-import Authentication from './Authentication';
+import {connect} from 'react-redux';
+import Authentication from '../Authentication/Authentication';
 
-const Header = () => {
-  return(
-    <div className="ui secondary pointing menu">
-      <Link to="/" className="item">
-        Overwatch Fantasy League
-      </Link>
-      <div className="right menu">
+class Header extends React.Component {
+  renderPastPredictions = () => {
+    if(this.props.loggedIn){
+      return(
         <Link to="/pastPredictions" className="item">
           Past Predictions
         </Link>
-        <Link to="/rules" className="item">
-          Rules
+      )
+    }
+  }
+  render(){
+    return(
+      <div className="ui secondary pointing menu">
+        <Link to="/" className="item">
+          Overwatch Fantasy League
         </Link>
-        <Link to="/leaderboard" className="item">
-          LeaderBoard
-        </Link>
-        <Authentication />
+        <div className="right menu">
+          {this.renderPastPredictions()}
+          <Link to="/rules" className="item">
+            Rules
+          </Link>
+          <Link to="/leaderboard" className="item">
+            LeaderBoard
+          </Link>
+          <Authentication />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 };
 
-export default Header;
+const mapStateToProps = state => {
+  return{
+    loggedIn: state.auth.isLoggedIn,
+  }
+}
+
+export default connect(mapStateToProps)(Header);

@@ -1,8 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-let app = express();
 const PORT = process.env.PORT || 5000;
+const authCheckMiddleware = require('./middleware/AuthCheck');
+require('dotenv').config();
+let app = express();
+
 
 mongoose.connect('mongodb://localhost:27017/overwatchFantasyLeagueDB', {useNewUrlParser: true}, function(err){
   if(err){
@@ -12,6 +15,8 @@ mongoose.connect('mongodb://localhost:27017/overwatchFantasyLeagueDB', {useNewUr
     console.log('Connected to: mongodb://localhost:27017/overwatchFantasyLeagueDB')
   }
 })
+
+mongoose.set('useFindAndModify', false);
 
 // const predictionSchema = new mongoose.Schema({
 //   seriesWinner: String,
@@ -34,6 +39,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 require('./routes')(app);
+app.use('/predictions', authCheckMiddleware);
+app.use('/predictions/:id', authCheckMiddleware);
 
 app.listen(PORT, (err) => {
   if (err) { console.log(err); };
