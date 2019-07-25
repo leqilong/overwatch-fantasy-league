@@ -28,31 +28,38 @@ class MatchesList extends React.Component{
       )
     }
   }
+  renderMatchSchedule = (timestamp) => {
+    const matchStartDateTime = new Date(timestamp);
+    return matchStartDateTime.toString().split(':')[0] + ':' + matchStartDateTime.toString().split(':')[1];
+  }
+
   renderMatchesList(){
+    console.log('MatchesList Component:');
+    console.log(this.props.matches);
     return this.props.matches.map(match =>{
       return(
         <div className="item" key={match.id}>
-          {this.renderButton(match)}
           <div className="content">
-            <div className="team1Container">
+            <div className="teamContainer">
               <div className="item">
-                <p>{match['competitors'][0]['name']}</p>
+                <p>{match['competitors'][0]['abbreviatedName']}</p>
               </div>
               <div className="item">
-                <img src={match['competitors'][0]['logo']} />
+                <img src={match['competitors'][0]['icon']} />
               </div>
             </div>
             <div className="item">
-              <p>{match['startDate']}</p>
+              <p>{this.renderMatchSchedule(match['startDate'])}</p>
             </div>
-            <div className="team2Container">
+            <div className="teamContainer">
               <div className="item">
-                <p>{match['competitors'][1]['name']}</p>
+                <p>{match['competitors'][1]['abbreviatedName']}</p>
               </div>
               <div className="item">
-                <img src={match['competitors'][1]['logo']} />
+                <img src={match['competitors'][1]['icon']} />
               </div>
-            </div>  
+            </div>
+            {this.renderButton(match)}
           </div>
         </div>
       )
@@ -73,6 +80,7 @@ class MatchesList extends React.Component{
 
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     matches: Object.values(state.matches),
     predictions: Object.values(state.predictions),

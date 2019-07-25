@@ -1,0 +1,20 @@
+.content{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 0.5fr;
+  grid-auto-rows: minmax(10px, auto);
+
+  .teamContainer{
+    max-height: 15px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    img{
+      width:50%;
+      height: auto;
+    }
+  }
+
+  .item{
+    text-align: center;
+  }
+}
