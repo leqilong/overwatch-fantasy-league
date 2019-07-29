@@ -50,4 +50,16 @@ module.exports = {
       callback(null, result);
     });
   }
+
+  updateScores: function(callback){
+    User.find({}, (err, users)=>{
+      if(err){
+        callback(err, null);
+      }
+
+      users.map(user=>{
+        user.predictions.find({isTallied: false, matchEndDate: })
+      })
+    })
+  }
 }
