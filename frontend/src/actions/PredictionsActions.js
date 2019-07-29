@@ -6,13 +6,9 @@ import _ from 'lodash';
 export const fetchMatches = () => async (dispatch, getState) => {
   const response = await predictions.get('/');
   const pastPredictions = getState().predictions;
-  console.log('action creator fetchMatches pastPredictions: ')
-  console.log(pastPredictions);
   let matches = response.data;
   if(!_.isEmpty(pastPredictions)){
     const predictedMatchIds = Object.keys(pastPredictions).map( pastPredictionKey => pastPredictions[pastPredictionKey].matchId);
-    console.log('predictedMatchIds: ');
-    console.log(predictedMatchIds);
     matches = response.data.map(match => {
         if (predictedMatchIds.includes(match.id)) {
           return {...match, isPredicted: true}
@@ -22,20 +18,18 @@ export const fetchMatches = () => async (dispatch, getState) => {
       }
     )
   }
-  console.log('matches: ')
-  console.log(matches);
   dispatch({type: 'FETCH_MATCHES', payload: matches});
 };
 
 export const fetchMatch = id => async dispatch => {
   const response = await predictions.get(`/matches/${id}`);
-  dispatch({type: 'FETCH_STREAM', payload: response.data});
+  dispatch({type: 'FETCH_MATCH', payload: response.data});
 };
 
 //Prediction
-export const createPrediction = ({formValues, matchId}) => async (dispatch, getState) => {
+export const createPrediction = ({formValues, matchId, matchEndDate}) => async (dispatch, getState) => {
   const {username} = getState().auth;
-  const response = await predictions.post('/predictions', {...formValues, matchId, username});
+  const response = await predictions.post('/predictions', {...formValues, matchId, matchEndDate, username});
   dispatch({type: 'CREATE_PREDICTION', payload: response.data});
   history.push('/');
 };
@@ -43,8 +37,6 @@ export const createPrediction = ({formValues, matchId}) => async (dispatch, getS
 export const fetchPredictions = () => async dispatch => {
   const response = await predictions.get('/predictions');
   dispatch({type: 'FETCH_PREDICTIONS', payload: response.data});
-  // console.log('Fetch predictions action creator: ')
-  // console.log(response.data);
 };
 
 export const fetchPrediction = id => async dispatch => {
@@ -59,4 +51,7 @@ export const editPrediction = (id, formValues) => async (dispatch, getState) => 
   history.push('/');
 }
 
-//Authentication
+export const fetchLeaders = () => async dispatch => {
+  const response = await predictions.get('/leaders');
+  dispatch({type: 'FETCH_LEADERS', payload: response.data})
+}

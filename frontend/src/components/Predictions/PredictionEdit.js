@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchPrediction, editPrediction} from '../../actions/PredictionsActions';
+import {fetchMatches, fetchPrediction, editPrediction} from '../../actions/PredictionsActions';
 import PredictionForm from './PredictionForm';
 
 class PredictionEdit extends React.Component {
   componentDidMount(){
+    this.props.fetchMatches();
     this.props.fetchPrediction(this.props.match.params.id)
   }
 
@@ -15,9 +16,6 @@ class PredictionEdit extends React.Component {
     if(!this.props.competition){
       return <div>Loading...</div>;
     }
-    console.log('PredictionEdit Component: ');
-    console.log(this.props.prediction);
-
     return(
       <div>
         <PredictionForm
@@ -31,12 +29,10 @@ class PredictionEdit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('state: ');
-  console.log(state);
   return {
     competition: state.matches[ownProps.match.params.id],
     prediction: state.predictions[ownProps.match.params.id]
   }
 }
 
-export default connect(mapStateToProps, {fetchPrediction, editPrediction})(PredictionEdit);
+export default connect(mapStateToProps, {fetchMatches, fetchPrediction, editPrediction})(PredictionEdit);

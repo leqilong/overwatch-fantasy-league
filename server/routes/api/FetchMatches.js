@@ -7,12 +7,7 @@ module.exports = (app) => {
     fetch(matchesURL)
       .then(res => res.json())
       .then(data => {
-        let matches = data['data']['stages'][4]['matches'];
-        // matches.map(match => {
-        //   match['id'] = match['id'].toString();
-        // });
-        // console.log(matches);
-        res.send(matches);
+        res.send(data['data']['stages'][4]['matches']);
       })
       .catch(err => {
         res.redirect('/error');

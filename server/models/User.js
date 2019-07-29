@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  predictions: [predictionSchema]
+  predictions: [predictionSchema],
+  score: Number
 })
 
 

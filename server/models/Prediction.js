@@ -14,7 +14,12 @@ const predictionSchema = new mongoose.Schema({
     required: true
   },
   seriesScoreTeam1: Number,
-  seriesScoreTeam2: Number
+  seriesScoreTeam2: Number,
+  matchEndDate: Date,
+  isTallied: {
+    type: Boolean,
+    default: false
+  }
 })
 
 mongoose.model('Prediction', predictionSchema);

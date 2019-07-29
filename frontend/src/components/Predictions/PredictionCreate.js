@@ -9,7 +9,7 @@ class PredictionCreate extends React.Component {
   }
 
   onSubmit = formValues => {
-    this.props.createPrediction({formValues, 'matchId': this.props.match.params.id});
+    this.props.createPrediction({formValues, 'matchId': this.props.match.params.id, 'matchEndDate': this.props.competition.endDate});
   }
   render(){
     if(!this.props.competition){

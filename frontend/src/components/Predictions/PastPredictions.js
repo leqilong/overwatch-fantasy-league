@@ -2,42 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {fetchMatches, fetchPredictions} from '../../actions/PredictionsActions';
+import List from './List';
 import _ from 'lodash';
 
 class PastPredictions extends React.Component {
   componentDidMount(){
-    this.props.fetchPredictions();
     this.props.fetchMatches();
+    this.props.fetchPredictions();
   }
-
-  renderButton = (prediction) => {
-   return(
-     <Link to={`/matches/predict/${prediction.matchId}/edit`} className="ui button primary">Edit Prediction</Link>
-    )
-  };
-
-  renderPredictionsList(){
-    return this.props.predictions.map(prediction =>{
-      return(
-        <div className="item" key={prediction.matchId}>
-          {this.renderButton(prediction)}
-          <div className="content">
-            <div className="item">
-              <p>{this.props.matches[prediction.matchId]['competitors'][0]['name']}</p>
-            </div>
-            <div className="item">
-              <p>{this.props.matches[prediction.matchId]['competitors'][0]['name']}</p>
-            </div>
-          </div>
-        </div>
-      )
-    })
-  }
-
   render(){
-    if(_.isEmpty(this.props.matches)){
-      return <div>Loading...</div>;
-    }
     if(_.isEmpty(this.props.predictions)){
       return(
         <div>
@@ -48,18 +21,26 @@ class PastPredictions extends React.Component {
         </div>
       )
     }
+    if(_.isEmpty(this.props.matches)){
+      return <div>Loading...</div>;
+    }
     return(
-      <div className="ui relaxed divided list">
-        {this.renderPredictionsList()}
-      </div>
+      <List
+        matchesData={this.props.matches}
+        isLoggedIn={true}
+      />
     )
   }
 }
 
 const mapStateToProps = state => {
+  let predictedMatches = [];
+  if(!_.isEmpty(state.matches)){
+    Object.values(state.predictions).map(prediction=> predictedMatches.push(state.matches[prediction.matchId]));
+  }
   return {
     predictions: Object.values(state.predictions),
-    matches: state.matches
+    matches: predictedMatches
   }
 }
 export default connect(mapStateToProps, {fetchMatches, fetchPredictions})(PastPredictions);

@@ -18,20 +18,6 @@ mongoose.connect('mongodb://localhost:27017/overwatchFantasyLeagueDB', {useNewUr
 
 mongoose.set('useFindAndModify', false);
 
-// const predictionSchema = new mongoose.Schema({
-//   seriesWinner: String,
-//   match_id: Number
-// })
-// //mongoose will be able to pluralize the model into a collection - Predictions
-// const Prediction = mongoose.model("Prediction", predictionSchema);
-//
-// const prediction = new Prediction ({
-//   seriesWinner: "Chengdu Hunters",
-//   match_id: 12345
-// });
-// //.save causes prediction to be added to the Predictions collection
-// prediction.save();
-
 app.use(cors());
 app.options('*', cors());
 
