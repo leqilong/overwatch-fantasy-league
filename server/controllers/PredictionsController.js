@@ -1,5 +1,6 @@
 const Prediction = require('../models/Prediction');
 const User = require('../models/User');
+const UpdateScore = require('../util/UpdateScore');
 
 module.exports = {
   find: function(filter, callback){
@@ -49,7 +50,7 @@ module.exports = {
       }
       callback(null, result);
     });
-  }
+  },
 
   updateScores: function(callback){
     User.find({}, (err, users)=>{
@@ -58,7 +59,26 @@ module.exports = {
       }
 
       users.map(user=>{
-        user.predictions.find({isTallied: false, matchEndDate: })
+        user.predictions.find({isTallied: false, matchEndDate: { $lt: new Date()}}, function(err, result){
+            if(err){
+              callback(err, null);
+            }
+            result.map(prediction => {
+              const score = UpdateScore.generateScore(prediction.matchId, prediction);
+              user.update({$inc: {score: score}}, function(err, result){
+                if(err){
+                  callback(err, null);
+                }
+              });
+              prediction.update({$set:{isTallied: true}}, function(err,result){
+                if(err){
+                  callback(err, null);
+                }
+
+                callback(null, results);
+              })
+            })
+        })
       })
     })
   }
