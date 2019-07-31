@@ -1,6 +1,8 @@
+const fetch = require('node-fetch');
 const Prediction = require('../models/Prediction');
 const User = require('../models/User');
 const UpdateScore = require('../util/UpdateScore');
+const generateFetchMatchURL = require('../util/GenerateOverwatchLeagueURL').generateFetchMatchURL;
 
 module.exports = {
   find: function(filter, callback){
@@ -53,32 +55,39 @@ module.exports = {
   },
 
   updateScores: function(callback){
-    User.find({}, (err, users)=>{
+    Prediction.find({isTallied: false, matchEndDate: {$lt: new Date()}}, function(err, result){
       if(err){
         callback(err, null);
       }
-
-      users.map(user=>{
-        user.predictions.find({isTallied: false, matchEndDate: { $lt: new Date()}}, function(err, result){
-            if(err){
-              callback(err, null);
-            }
-            result.map(prediction => {
-              const score = UpdateScore.generateScore(prediction.matchId, prediction);
-              user.update({$inc: {score: score}}, function(err, result){
-                if(err){
-                  callback(err, null);
-                }
-              });
-              prediction.update({$set:{isTallied: true}}, function(err,result){
-                if(err){
-                  callback(err, null);
-                }
-
-                callback(null, results);
-              })
+      result.map(prediction => {
+        const matchURL = generateFetchMatchURL(prediction.matchId);
+        fetch(matchURL)
+          .then(res => res.json())
+          .then(data => {
+            const score = UpdateScore.generateScore(data, prediction);
+            User.findOneAndUpdate({username: prediction.username}, {$inc: {score: score}}, function(err, user){
+              if(err){
+                callback(err, null);
+              }
             })
-        })
+
+            prediction.isTallied = true;
+            prediction.save(function (err) {
+              if(err) {
+                callback(err, null);
+              }
+            });
+         })
+          .catch( err => {
+            callback(err, null)
+         });
+      })
+
+      User.find({}, function(err, result){
+        if(err){
+          callback(err, null);
+        }
+        callback(null, result);
       })
     })
   }

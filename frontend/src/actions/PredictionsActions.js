@@ -53,5 +53,7 @@ export const editPrediction = (id, formValues) => async (dispatch, getState) => 
 
 export const fetchLeaders = () => async dispatch => {
   const response = await predictions.get('/leaders');
+  console.log('fetchLeaders action:');
+  console.log(response.data);
   dispatch({type: 'FETCH_LEADERS', payload: response.data})
 }

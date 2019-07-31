@@ -4,10 +4,13 @@ import matchReducer from './matchReducer';
 import predictionReducer from './predictionReducer';
 import authReducer from './authReducer';
 import errorReducer from './errorReducer';
+import userReducer from './userReducer';
+
 export default combineReducers({
   predictions: predictionReducer,
   matches: matchReducer,
   form: formReducer,
   auth: authReducer,
-  error: errorReducer
+  error: errorReducer,
+  users: userReducer
 });

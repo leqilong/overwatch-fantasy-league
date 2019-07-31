@@ -5,11 +5,10 @@ module.exports = (app) => {
     const filter = {"username": req.userData.username}
     predictionsController.find(filter, function(err, results){
         if(err){
-            console.log(err);
-            res.json({
-                error: err
-            });
-            return;
+          res.json({
+              error: err
+          });
+          return;
         }
         res.send(results);
     });
