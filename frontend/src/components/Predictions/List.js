@@ -6,8 +6,8 @@ class List extends React.Component{
   renderButton = (match) => {
     if(this.props.isLoggedIn){
       return(
-        match.isPredicted === true ? (<Link to={`/matches/predict/${match.id}/edit`} className="small ui button">Edit Prediction</Link>) :
-       (<Link to={`/matches/predict/${match.id}`} className="small ui button">Make Prediction</Link>)
+        match.isPredicted === true ? (<Link to={`/matches/predict/${match.id}/edit`} className="button">Edit Prediction</Link>) :
+       (<Link to={`/matches/predict/${match.id}`} className="button">Make Prediction</Link>)
        )
     }
   }
@@ -28,6 +28,31 @@ class List extends React.Component{
     return matchStartDateTime.toString().split('2019')[0] + formatAMPM(matchStartDateTime);
   }
 
+  renderMatchResult = (match) => {
+    if(match.state === 'CONCLUDED'){
+      return(
+        match.scores[0]['value'] > match.scores[1]['value'] ? (
+          <div className="resultsContainer">
+            <div className="resultsTeamA">
+              WON
+            </div>
+            <div className="resultsTeamB">
+              LOSS
+            </div>
+          </div>
+        ) : (
+          <div className="resultsContainer">
+            <div className="resultsTeamA">
+              LOSS
+            </div>
+            <div className="resultsTeamB">
+              WON
+            </div>
+          </div>
+        )
+      )
+    }
+  }
   renderMatchesList(){
     return this.props.matchesData.map(match =>{
       return(
@@ -54,6 +79,7 @@ class List extends React.Component{
             </div>
             {this.renderButton(match)}
           </div>
+          {this.renderMatchResult(match)}
         </div>
       )
     })

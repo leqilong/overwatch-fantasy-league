@@ -12,12 +12,28 @@
     }
 
     img{
-      width:50%;
+      width:30%;
       height: auto;
     }
   }
 
   .item{
     text-align: center;
+  }
+
+  .button{
+    color: #FF7F11;
+  }
+}
+
+.resultsContainer{
+  display: grid;
+  grid-template-columns: 0.3fr 2fr 0.5fr;
+  width: 100%;
+  height: auto;
+  color: #EE423D;
+
+  .resultsTeamB, .resultsTeamA{
+    text-align: right;
   }
 }
