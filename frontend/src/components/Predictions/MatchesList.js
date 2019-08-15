@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import List from './List';
 import {fetchMatches, fetchPredictions} from '../../actions/PredictionsActions';
 import _ from 'lodash';
-import './MatchesList.scss'
 
 class MatchesList extends React.Component{
 

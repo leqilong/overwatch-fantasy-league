@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin|Oswald&display=swap');
+
+$colors: (
+    button: #FF7F11,
+    button-disabled: #BEB7A4,
+    button-hovered: #BEB7A4,
+    text: #47525E,
+    text-hovered: #FF7F11,
+    landing-text: #ffffff,
+    results-text: #EE423D,
+    submit: #FF7F11,
+    submit-hovered-background: #ffffff,
+    submit-text: #ffffff,
+    submit-hovered-text: #FF7F11,
+    reset-text: #FF7F11,
+    reset-background: #ffffff
+);
+
+@function color($color-name){
+  @return map-get($colors, $color-name);
+}
+
+$font: 'Cabin';
+
+$small: 420px;
+$medium: 750px;
+$large: 991px;
+
+@mixin large {
+    @media (max-width: #{$large}) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media (max-width: #{$medium}) {
+        @content;
+    }
+}
+
+@mixin small {
+    @media (max-width: #{$small}) {
+        @content;
+    }
+}

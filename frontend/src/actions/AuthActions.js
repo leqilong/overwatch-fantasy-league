@@ -15,16 +15,11 @@ export const submitLogin = (formValues) => async dispatch => {
     localStorage.setItem('username', response.data.username);
     localStorage.setItem('token', response.data.tokenId);
     dispatch({type: 'LOGIN_USER', payload: response.data});
-    console.log('action submitLogin:');
-    console.log(localStorage.getItem('token'));
-    console.log('response.data');
-    console.log(response.data);
     history.push('/');
   }
 }
 
 export const submitRegister = (formValues) => async dispatch => {
-  console.log(formValues);
   const response = await predictions.post('/register', formValues)
                                     .catch(error => {
                                       dispatch({

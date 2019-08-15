@@ -1,13 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './MatchesList.scss'
+import styles from '../../stylesheets/MatchesList.module.scss'
+import cx from 'classnames';
 
 class List extends React.Component{
   renderButton = (match) => {
+    const date = new Date();
+    const currentTimestamp = date.getTime();
     if(this.props.isLoggedIn){
       return(
-        match.isPredicted === true ? (<Link to={`/matches/predict/${match.id}/edit`} className="button">Edit Prediction</Link>) :
-       (<Link to={`/matches/predict/${match.id}`} className="button">Make Prediction</Link>)
+        match['startDateTS'] <= currentTimestamp ? (<div className={cx(styles.button, styles.disabled)}>Prediction Closed</div>) : match.isPredicted === true ? (<Link to={`/matches/predict/${match.id}/edit`} className={styles.button}>Edit Prediction</Link>) :
+       (<Link to={`/matches/predict/${match.id}`} className={styles.button}>Make Prediction</Link>)
        )
     }
   }
@@ -25,27 +28,36 @@ class List extends React.Component{
     }
 
     const matchStartDateTime = new Date(timestamp);
-    return matchStartDateTime.toString().split('2019')[0] + formatAMPM(matchStartDateTime);
+    return (
+      <div className={styles.matchSchedule}>
+        <div className={styles.matchDate}>
+          {matchStartDateTime.toString().split('2019')[0]}
+        </div>
+        <div className={styles.matchTime}>
+          {formatAMPM(matchStartDateTime)}
+        </div>
+      </div>
+    )
   }
 
   renderMatchResult = (match) => {
     if(match.state === 'CONCLUDED'){
       return(
         match.scores[0]['value'] > match.scores[1]['value'] ? (
-          <div className="resultsContainer">
-            <div className="resultsTeamA">
+          <div className={styles.resultsContainer}>
+            <div className={styles.resultsTeamA}>
               WON
             </div>
-            <div className="resultsTeamB">
+            <div className={styles.resultsTeamB}>
               LOSS
             </div>
           </div>
         ) : (
-          <div className="resultsContainer">
-            <div className="resultsTeamA">
+          <div className={styles.resultsContainer}>
+            <div className={styles.resultsTeamA}>
               LOSS
             </div>
-            <div className="resultsTeamB">
+            <div className={styles.resultsTeamB}>
               WON
             </div>
           </div>
@@ -56,24 +68,24 @@ class List extends React.Component{
   renderMatchesList(){
     return this.props.matchesData.map(match =>{
       return(
-        <div className="item" key={match.id}>
-          <div className="content">
-            <div className="teamAContainer">
-              <div className="item">
-                <p>{match['competitors'][0]['abbreviatedName']}</p>
+        <div className={cx('item', styles.item)} key={match.id}>
+          <div className={cx('content', styles.content)}>
+            <div className={styles.teamAContainer}>
+              <div className={cx(styles.item, styles.teamName)}>
+                <p>{match['competitors'][0]['name']}</p>
               </div>
-              <div className="item teamALogo">
+              <div className={cx(styles.item, styles.teamALogo)}>
                 <img src={match['competitors'][0]['icon']} alt='team logo' />
               </div>
             </div>
-            <div className="item">
-              <p>{this.renderMatchSchedule(match['startDate'])}</p>
+            <div className={styles.item}>
+              {this.renderMatchSchedule(match['startDate'])}
             </div>
-            <div className="teamBContainer">
-              <div className="item">
-                <p>{match['competitors'][1]['abbreviatedName']}</p>
+            <div className={styles.teamBContainer}>
+              <div className={cx(styles.item, styles.teamName)}>
+                <p>{match['competitors'][1]['name']}</p>
               </div>
-              <div className="item teamBLogo">
+              <div className={cx(styles.item, styles.teamBLogo)}>
                 <img src={match['competitors'][1]['icon']} alt='team logo' />
               </div>
             </div>
@@ -87,7 +99,7 @@ class List extends React.Component{
 
   render(){
     return(
-      <div className="ui relaxed divided list">
+      <div className='ui relaxed divided list'>
         {this.renderMatchesList()}
       </div>
     )

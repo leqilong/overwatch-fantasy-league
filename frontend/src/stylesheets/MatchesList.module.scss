@@ -1,0 +1,128 @@
+@import 'Variables';
+
+body{
+  font-family: $font, sans-serif;
+  font-weight: bold;
+  color: color(text);
+}
+.content{
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 0.5fr;
+  grid-auto-rows: minmax(10px, auto);
+
+  @include large{
+    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+  }
+
+  @include medium{
+    grid-template-columns: 1fr 1fr 1fr 0.7fr;
+  }
+
+  @include small{
+    grid-template-columns: 0.3fr 1.2fr 0.3fr 0.8fr;
+  }
+
+  .item{
+    text-align: center;
+  }
+
+  .matchSchedule{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+
+    .matchDate{
+      text-align: right;
+      line-height: 40px;
+    }
+
+    .matchTime{
+      text-align: center;
+      background-color: rgba(133, 147, 140, 0.3);;
+      width: 40%;
+      border-radius: 3px;
+      line-height: 20px;
+      height: 20px;
+      margin-top: 10px;
+
+      @include large{
+        width: 60%;
+      }
+
+      @include medium{
+        width: 70%;
+      }
+    }
+  }
+
+  .teamAContainer, .teamBContainer{
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+
+    @include small{
+      display: block;
+    }
+
+    .teamALogo{
+      order: -1;
+    }
+
+    img{
+      width:60%;
+      height: auto;
+
+      @include small{
+        padding-top: 20%;
+      }
+    }
+
+    .teamName{
+      font-weight: bolder;
+      text-align: left;
+
+      @include small{
+        display: none;
+      }
+    }
+
+    .teamName p{
+      line-height: 40px;
+    }
+  }
+  .teamBContainer{
+    grid-template-columns: 1fr 0.3fr;
+
+    .teamName{
+      font-weight: bolder;
+      text-align: right;
+    }
+  }
+
+  .button{
+    color: color(button);
+    line-height: 40px;
+    &:hover{
+      color: color(button-hovered);
+    }
+  }
+
+  .button.disabled{
+    color: color(button-disabled);
+  }
+}
+
+.resultsContainer{
+  display: grid;
+  grid-template-columns: 0.3fr 2fr 0.5fr;
+  width: 100%;
+  height: auto;
+  color: color(results-text);
+
+  @include medium{
+    grid-template-columns: 0.3fr 2fr 0.7fr;
+  }
+
+  .resultsTeamB, .resultsTeamA{
+    text-align: right;
+  }
+}

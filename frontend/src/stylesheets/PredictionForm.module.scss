@@ -1,0 +1,77 @@
+@import 'Variables';
+
+.title{
+  text-align: center;
+  margin: 40px 20px;
+}
+
+.button{
+  display: block;
+  margin: auto;
+}
+
+.radioButton{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-left: 22%;
+
+  .radioButtonLabel{
+    height: 150px;
+    width: auto;
+
+    img{
+      height: 100%;
+    }
+  }
+}
+
+.score-predict{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .dropdown-menu button{
+    display: block;
+  }
+
+  .dropdown-menu{
+    width: 100%;
+    text-align: center;
+
+    .select-score{
+      display: inline-block;
+      text-align: initial;
+    }
+
+    button{
+      display: block;
+      margin: auto;
+    }
+  }
+}
+
+.submit{
+  background-color: color(submit);
+  border-radius: 4px;
+  cursor: pointer;
+  color: color(submit-text);
+  padding:18px 50px;
+  margin-top: 50px;
+  font-family: 'Cabin', sans-serif;
+  font-size: 17px;
+  text-decoration: none;
+  &:hover{
+    background-color: color(submit-hovered-background);
+    color: color(submit-hovered-text);
+  }
+}
+
+
+.reset{
+  border-radius: 4px;
+  cursor: pointer;
+  color: color(reset-text);
+  background-color: color(reset-background);
+  font-family: $font, sans-serif;
+  text-decoration: none;
+  padding:10px 20px;
+}

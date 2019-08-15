@@ -1,0 +1,43 @@
+@import 'Variables';
+
+:global(#root){
+  height: 100%;
+  position: relative;
+
+  .landing-container, .container{
+    position: absolute;
+    top: 0;
+  }
+
+  .landing-container{
+    width: 100%;
+  }
+
+  .container{
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+.landing-container{
+  background-image: url('https://static.playoverwatch.com/media/screenshot/ana-screenshot-001.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  height: 100%;
+  width: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .text-container{
+    .landing-text{
+      color: color(landing-text);
+      font-size: 80px;
+    }
+  }
+}

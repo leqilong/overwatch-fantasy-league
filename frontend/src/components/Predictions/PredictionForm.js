@@ -3,8 +3,11 @@ import {Field, reduxForm} from 'redux-form';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioButtonChecked from 'material-ui/svg-icons/toggle/radio-button-checked';
-import './PredictionForm.scss';
+import RadioButtonUnchecked from 'material-ui/svg-icons/toggle/radio-button-unchecked'
+import styles from '../../stylesheets/PredictionForm.module.scss';
+import cx from 'classnames';
 
 class PredictionForm extends React.Component{
   onSubmit = (formValues) => {
@@ -23,8 +26,7 @@ class PredictionForm extends React.Component{
 
   renderTeamLogo = index => {
     return (
-      <div className='radioButtonLabel'>
-        <p>{this.props.matchData['competitors'][index]['name']}</p>
+      <div className={styles.radioButtonLabel}>
         <img src={this.props.matchData['competitors'][index]['icon']} alt='team logo'/>
       </div>
     )
@@ -36,17 +38,18 @@ class PredictionForm extends React.Component{
 
   renderMatchScoreDropdown = ({input, label, meta}) => {
     return(
-      <div>
+      <div className={styles['dropdown-menu']}>
         <SelectField
           value = {input.value}
           floatingLabelText = {label}
+          className={styles['select-score']}
           errorText = {meta.touched && meta.error}
           {...input}
           onChange={(event, index, value) => input.onChange(value)}
         >
           {this.renderMenuItem()}
         </SelectField>
-        <button className='ui button primary' onClick={(event)=>{event.preventDefault(); this.props.resetSection(input.name, label)}}>Reset</button>
+        <button className={cx(styles.button, styles.reset)} onClick={(event)=>{event.preventDefault(); this.props.resetSection(input.name, label)}}>Reset</button>
       </div>
     )
   }
@@ -62,7 +65,6 @@ class PredictionForm extends React.Component{
     const renderRadioGroup = ({ input, meta: {touched, error}, ...rest}) => (
       <div>
         <RadioButtonGroup {...input} {...rest}
-          labelPosition='right'
           valueSelected={input.value}
           onChange={(event, value) => input.onChange(value)}
         />
@@ -71,26 +73,23 @@ class PredictionForm extends React.Component{
     )
     return(
       <form className='ui form error' onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <div>
-          <h2>Series winner:</h2>
+        <div className={styles.title}>
+          <h2>Predict Series winner</h2>
         </div>
         <div>
-          <Field name='seriesWinner' className='radioButton' component={renderRadioGroup} label='Series Winner:' >
-            <RadioButton value={this.renderTeamValues(0)} checkedIcon={<RadioButtonChecked style={{ fill: '#d09735' }} />} label={this.renderTeamLogo(0)} />
-            <RadioButton value={this.renderTeamValues(1)} checkedIcon={<RadioButtonChecked style={{ fill: '#d09735' }} />} label={this.renderTeamLogo(1)} />
+          <Field name='seriesWinner' className={styles.radioButton} component={renderRadioGroup} label='Series Winner:' >
+            <RadioButton value={this.renderTeamValues(0)} checkedIcon={<RadioButtonChecked style={{ fill: 'FF7F11' }} />} uncheckedIcon={<RadioButtonUnchecked style={{ fill: 'FF7F11' }} />} label={this.renderTeamLogo(0)} />
+            <RadioButton value={this.renderTeamValues(1)} checkedIcon={<RadioButtonChecked style={{ fill: 'FF7F11' }} />} uncheckedIcon={<RadioButtonUnchecked style={{ fill: 'FF7F11' }} />} label={this.renderTeamLogo(1)} />
           </Field>
         </div>
-        <div>
-          <h2>Series final score:</h2>
+        <div className={styles.title}>
+          <h2>Predict Final Score</h2>
         </div>
-        <div className='dropdownMenu'>
+        <div className={styles['score-predict']}>
           <Field name='seriesScoreTeam1' component={this.renderMatchScoreDropdown} label={this.renderTeamValues(0)} />
           <Field name='seriesScoreTeam2' component={this.renderMatchScoreDropdown} label={this.renderTeamValues(1)} />
         </div>
-        <div>
-          <h2>Map winners:</h2>
-        </div>
-        <button className='ui button primary'>Submit</button>
+        <button className={cx(styles.button, styles.submit)}>Submit</button>
       </form>
     )
   };

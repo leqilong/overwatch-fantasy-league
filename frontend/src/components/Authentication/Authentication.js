@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {logoutUser} from '../../actions/AuthActions';
+import styles from '../../stylesheets/Header.module.scss';
 
 class Authentication extends React.Component{
 
@@ -11,13 +12,15 @@ class Authentication extends React.Component{
 
   render(){
     const userNotLoggedIn = (
-      <Link to="/login" className="item">
-        Log In
-      </Link>
+      <div className='header-item'>
+        <Link to='/login' className={styles['header-item']}>
+          Log In
+        </Link>
+      </div>
     )
     const userLoggedIn = (
-      <div>
-        {this.props.username},
+      <div className={styles['header-item']}>
+        {this.props.username}
         <button onClick={this.onLogoutClick}>
           log out
         </button>

@@ -1,0 +1,19 @@
+.past-predictions{
+  display: grid;
+  grid-template-columns: 8fr 2fr;
+  grid-gap: 10px;
+  text-align: center;
+
+  .score-board{
+    font-weight: lighter;
+  }
+
+  h2{
+    font-size: 15px;
+  }
+
+  .score{
+    font-size: 48px;
+    margin-top: 40px;
+  }
+}
