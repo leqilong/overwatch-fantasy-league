@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {submitLogin} from '../../actions/AuthActions';
 import AuthenticationForm from './AuthenticationForm';
+import styles from '../../stylesheets/AuthenticationForm.module.scss';
 
 class Login extends React.Component{
   onSubmit = formValues => {
@@ -10,18 +11,15 @@ class Login extends React.Component{
   }
 
   render(){
-    console.log('Login:');
-    console.log(this.props.error);
     return(
       <div>
         <h2>Log in to manage your predictions!</h2>
         <AuthenticationForm
           onSubmit={this.onSubmit}
         />
-        Not a user? Sign up
-        <Link to="/register">
-          here
-        </Link>
+        <h4>Not a user? Sign up
+          <Link to="/register" className={styles['link']}> here</Link>
+        </h4>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {logoutUser} from '../../actions/AuthActions';
 import styles from '../../stylesheets/Header.module.scss';
 
@@ -12,11 +12,15 @@ class Authentication extends React.Component{
 
   render(){
     const userNotLoggedIn = (
-      <div className='header-item'>
-        <Link to='/login' className={styles['header-item']}>
-          Log In
-        </Link>
-      </div>
+      <NavLink
+        to="/login"
+        className={styles['header-item']}
+        activeStyle={{
+          color: this.props.activeLinkColor
+        }}
+      >
+        Log In
+      </NavLink>
     )
     const userLoggedIn = (
       <div className={styles['header-item']}>
@@ -28,9 +32,7 @@ class Authentication extends React.Component{
     )
 
     return(
-      <div>
-        {this.props.loggedIn ? userLoggedIn : userNotLoggedIn}
-      </div>
+      this.props.loggedIn ? userLoggedIn : userNotLoggedIn
     )
   }
 }

@@ -1,35 +1,65 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Authentication from '../Authentication/Authentication';
 import styles from '../../stylesheets/Header.module.scss';
 
 class Header extends React.Component {
+
+  activeLinkColor = () => {
+    return '#58C9B9';
+  }
+
   renderPastPredictions = () => {
     if(this.props.loggedIn){
       return(
-        <Link to="/pastPredictions" className={styles['header-item']}>
+        <NavLink
+          to="/pastPredictions"
+          className={styles['header-item']}
+          activeStyle={{
+            color: `${this.activeLinkColor()}`
+          }}
+        >
           Past Predictions
-        </Link>
+        </NavLink>
       )
     }
   }
+
   render(){
     return(
       <div className={styles.header}>
         <div className='ui secondary pointing menu'>
-          <Link to='/matches' className={styles['header-item']}>
+          <NavLink
+            to='/matches'
+            className={styles['header-item']}
+            activeStyle={{
+              color: `${this.activeLinkColor()}`
+            }}
+          >
             Overwatch Fantasy League
-          </Link>
+          </NavLink>
           <div className='right menu'>
             {this.renderPastPredictions()}
-            <Link to='/rules' className={styles['header-item']}>
+            <NavLink
+              to='/rules'
+              className={styles['header-item']}
+              activeStyle={{
+                color: `${this.activeLinkColor()}`
+              }}
+            >
               Rules
-            </Link>
-            <Link to='/leaderboard' className={styles['header-item']}>
+            </NavLink>
+            <NavLink
+              to='/leaderboard'
+              className={styles['header-item']}
+              activeStyle={{
+                color: `${this.activeLinkColor()}`
+              }}
+            >
               LeaderBoard
-            </Link>
-            <Authentication />
+            </NavLink>
+            <Authentication activeLinkColor={this.activeLinkColor()} />
           </div>
         </div>
       </div>

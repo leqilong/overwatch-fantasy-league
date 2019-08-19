@@ -1,31 +1,7 @@
 @import 'Variables';
-
-.header{
-  &:hover{
-    animation: colorChange 1s ease;
-  }
-
-  @keyframes colorChange{
-    0%{
-      background-color: rgba(203, 232, 150, 0.1);
-    }
-
-    25%{
-      background-color: rgba(203, 232, 150, 0.3);
-    }
-
-    50%{
-      background-color: rgba(203, 232, 150, 0.6);
-    }
-
-    100%{
-      background-color: rgba(203, 232, 150, 0.8);
-    }
-  }
-}
 .header-item{
   font-family: $font, sans-serif;
-  font-weight: lighter;
+  font-weight: bold;
   text-decoration: none;
   color: color(text);
   margin: 10px 10px;

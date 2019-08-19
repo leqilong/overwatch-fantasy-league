@@ -13,7 +13,8 @@ $colors: (
     submit-text: #ffffff,
     submit-hovered-text: #FF7F11,
     reset-text: #FF7F11,
-    reset-background: #ffffff
+    reset-background: #ffffff,
+    active-link: #CBE896
 );
 
 @function color($color-name){

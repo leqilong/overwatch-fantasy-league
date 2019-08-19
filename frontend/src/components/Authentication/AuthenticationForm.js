@@ -2,6 +2,8 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import _ from 'lodash';
+import cx from 'classnames';
+import styles from '../../stylesheets/AuthenticationForm.module.scss';
 
 class AuthenticationForm extends React.Component{
   onSubmit = (formValues) => {
@@ -18,12 +20,12 @@ class AuthenticationForm extends React.Component{
     }
   }
 
-  renderInput = ({input, label, meta}) => {
+  renderInput = ({input, type, label, meta}) => {
     const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} autoComplete="off"/>
+        <input {...input} autoComplete="off" type={type} />
         {this.renderError(meta)}
       </div>
     )
@@ -32,7 +34,7 @@ class AuthenticationForm extends React.Component{
   renderPasswordConfirmation() {
     if(this.props.isRegistration){
       return(
-        <Field name="passwordConfirm" component={this.renderInput} label="Confirm Password"/>
+        <Field name="passwordConfirm" type='password' component={this.renderInput} label="Confirm Password"/>
       )
     }
   }
@@ -49,13 +51,15 @@ class AuthenticationForm extends React.Component{
 
   render(){
     return(
-      <form className="ui form error" onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <Field name="username" component={this.renderInput} label="Username" />
-        <Field name="password" component={this.renderInput} label="Password"/>
-        {this.renderPasswordConfirmation()}
-        {this.renderAuthError()}
-        <button className="ui button primary">Submit</button>
-      </form>
+      <div className={styles['form']}>
+        <form className='ui form error' onSubmit={this.props.handleSubmit(this.onSubmit)}>
+          <Field name='username' type='text' component={this.renderInput} label='Username' />
+          <Field name='password' type='password' component={this.renderInput} label='Password' />
+          {this.renderPasswordConfirmation()}
+          {this.renderAuthError()}
+          <button className={cx(styles['button'], styles['submit'])}>Submit</button>
+        </form>
+      </div>
     )
   };
 };
