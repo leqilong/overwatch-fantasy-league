@@ -31,7 +31,7 @@ export const createPrediction = ({formValues, matchId, matchEndDate}) => async (
   const {username} = getState().auth;
   const response = await predictions.post('/predictions', {...formValues, matchId, matchEndDate, username});
   dispatch({type: 'CREATE_PREDICTION', payload: response.data});
-  history.push('/');
+  history.push('/matches');
 };
 
 export const fetchPredictions = () => async dispatch => {
@@ -48,7 +48,7 @@ export const editPrediction = (id, formValues) => async (dispatch, getState) => 
   const {username} = getState().auth;
   const response = await predictions.patch(`/predictions/${id}`, {...formValues, username});
   dispatch({type: 'EDIT_PREDICTION', payload: response.data});
-  history.push('/');
+  history.push('/matches');
 }
 
 //Leaderboard
