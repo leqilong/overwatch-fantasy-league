@@ -23,11 +23,18 @@ class MatchesList extends React.Component{
   }
 
   render(){
+    if(_.isEmpty(this.props.matches)){
+      return(
+        <div>
+          Loading...
+        </div>
+      )
+    }
     return(
       <div>
         {this.renderButtonIfNotLoggedIn()}
         <List
-          matchesData={this.props.matches}
+          matchesData={this.props.matches.filter( match => match['competitors'][0] != null)}
           isLoggedIn = {this.props.isLoggedIn}
         />
       </div>

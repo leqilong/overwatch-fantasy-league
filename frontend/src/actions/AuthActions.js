@@ -15,7 +15,7 @@ export const submitLogin = (formValues) => async dispatch => {
     localStorage.setItem('username', response.data.username);
     localStorage.setItem('token', response.data.tokenId);
     dispatch({type: 'LOGIN_USER', payload: response.data});
-    history.push('/');
+    history.push('/matches');
   }
 }
 

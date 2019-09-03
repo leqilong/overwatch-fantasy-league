@@ -107,6 +107,6 @@ const validate = formValues =>{
 }
 
 export default reduxForm({
-  form: 'predictionForm',
+  form: 'PredictionForm',
   validate
 })(PredictionForm);

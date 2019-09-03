@@ -19,6 +19,7 @@ jspm_packages/
 /frontend/.env.test.local
 /frontend/.env.production.local
 /server/.env
+.DS_Store
 
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
