@@ -3,8 +3,8 @@ import {Provider} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { shallow, mount } from 'enzyme';
 
-import { storeFactory } from '../testUtils';
-import PredictionForm from '../../components/Predictions/PredictionForm';
+import { storeFactory } from '../../testUtils';
+import PredictionForm from '../../../components/Predictions/PredictionForm';
 
 const setup = (setupProps, handleSubmitMock, initialState={}) => {
   const store = storeFactory(initialState);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import List from '../../components/Predictions/List';
+import List from '../../../components/Predictions/List';
 
 const defaultProps = {
   matchesData: [{

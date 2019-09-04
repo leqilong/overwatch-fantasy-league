@@ -1,5 +1,6 @@
 import predictions from '../apis/predictions';
 import history from '../history';
+import { LOGIN_USER, REGISTER_USER, LOGOUT_USER } from './Types';
 
 export const submitLogin = (formValues) => async dispatch => {
   const response = await predictions.post('/login', formValues)
@@ -14,7 +15,7 @@ export const submitLogin = (formValues) => async dispatch => {
   if(response){
     localStorage.setItem('username', response.data.username);
     localStorage.setItem('token', response.data.tokenId);
-    dispatch({type: 'LOGIN_USER', payload: response.data});
+    dispatch({type: LOGIN_USER, payload: response.data});
     history.push('/matches');
   }
 }
@@ -31,7 +32,7 @@ export const submitRegister = (formValues) => async dispatch => {
   if(response){
     localStorage.setItem('username', response.data.username);
     localStorage.setItem('token', response.data.tokenId);
-    dispatch({type: 'REGISTER_USER', payload: response.data});
+    dispatch({type: REGISTER_USER, payload: response.data});
     history.push('/login');
   }
 }
@@ -39,5 +40,5 @@ export const submitRegister = (formValues) => async dispatch => {
 export const logoutUser = () => async dispatch => {
   localStorage.removeItem('username');
   localStorage.removeItem('token');
-  dispatch({type: 'LOGOUT_USER'})
+  dispatch({type: LOGOUT_USER})
 }
