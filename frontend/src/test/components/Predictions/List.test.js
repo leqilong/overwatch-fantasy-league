@@ -121,7 +121,7 @@ describe('if not logged in', ()=> {
   });
 })
 
-describe('if match concluded', ()=> {
+describe('if a match concluded', ()=> {
   let wrapper;
   const props = {
     matchesData: [{
@@ -154,7 +154,7 @@ describe('if match concluded', ()=> {
   });
 });
 
-describe('if match is pending', ()=>{
+describe('if a match is pending', ()=>{
   let wrapper;
   beforeEach(()=> {
     wrapper = setup();
