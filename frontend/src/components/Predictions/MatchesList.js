@@ -16,7 +16,7 @@ class MatchesList extends React.Component{
     if(!this.props.isLoggedIn){
       return(
         <Link to="/login" className="ui button primary">
-          Log in to start making preditions!
+          Log in to start making predictions!
         </Link>
       )
     }

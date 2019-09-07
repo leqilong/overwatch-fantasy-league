@@ -4,7 +4,7 @@ import styles from '../../stylesheets/PastPredictions.module.scss';
 class ScoreBoard extends React.Component{
   render(){
     return(
-      <div clasName={styles['score-board']}>
+      <div className={styles['score-board']}>
         <h2>
           Scores
         </h2>

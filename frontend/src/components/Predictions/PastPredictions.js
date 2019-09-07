@@ -44,7 +44,9 @@ class PastPredictions extends React.Component {
 const mapStateToProps = state => {
   let predictedMatches = [];
   if(!_.isEmpty(state.matches)){
-    Object.values(state.predictions).map(prediction=> predictedMatches.push(state.matches[prediction.matchId]));
+    Object.values(state.predictions).map(prediction => {
+      predictedMatches.push(...(state.matches[prediction.matchId] === undefined ? [] : [state.matches[prediction.matchId]]));
+    });
   }
   return {
     predictions: Object.values(state.predictions),
@@ -52,4 +54,5 @@ const mapStateToProps = state => {
     currentUser: state.users[state.auth.username]
   }
 }
+
 export default connect(mapStateToProps, {fetchMatches, fetchPredictions, fetchLeaders})(PastPredictions);
