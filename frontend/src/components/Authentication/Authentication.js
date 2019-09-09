@@ -3,11 +3,28 @@ import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import {logoutUser} from '../../actions/AuthActions';
 import styles from '../../stylesheets/Header.module.scss';
+import { DropdownMenuIcon } from '../Header/DropdownMenuIcon';
 
 class Authentication extends React.Component{
 
+  state = { dropdownMenuOpen:false };
+
   onLogoutClick = () => {
     this.props.logoutUser();
+  }
+
+  toggleDropdownMenu = () => {
+    this.setState(previousState => ({
+      dropdownMenuOpen: !previousState.dropdownMenuOpen
+    }))
+  }
+
+  renderDropdownMenuList = (shouldDisplay) => {
+    return(
+      <ul className={styles[`${shouldDisplay}`]}>
+        <li>log out</li>
+      </ul>
+    )
   }
 
   render(){
@@ -23,11 +40,16 @@ class Authentication extends React.Component{
       </NavLink>
     )
     const userLoggedIn = (
-      <div className={styles['header-item']}>
-        {this.props.username}
-        <button onClick={this.onLogoutClick}>
-          log out
-        </button>
+      <div>
+        <div className={styles['header-item']}>
+          <div className={styles['dropdown-menu']}>
+            {this.props.username}
+            <div className={styles['dropdown-menu-icon']} onClick={this.toggleDropdownMenu}>
+              <DropdownMenuIcon />
+            </div>
+          </div>
+        </div>
+        {this.state.dropdownMenuOpen ? this.renderDropdownMenuList('showMenu') : this.renderDropdownMenuList('hideMenu')}
       </div>
     )
 

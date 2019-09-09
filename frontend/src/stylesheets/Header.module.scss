@@ -8,4 +8,44 @@
   &:hover{
     color: color(text-hovered);
   }
+  .dropdown-menu {
+    display: inline-block;
+  }
+  .dropdown-menu .dropdown-menu-icon{
+    float: right;
+    margin-left: 10px;
+    fill: #FA9C1D;
+    &:hover{
+      cursor: pointer;
+      fill: color(text);
+    }
+  }
+
+  .dropdown-menu-icon{
+    &:active{
+      animation-name: rotateIcon;
+      animation-duration: 0.7s;
+      transform-origin: 41% 41%;
+    }
+  }
+}
+
+@keyframes rotateIcon{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+.showMenu{
+  position: fixed;
+}
+.showMenu li{
+  list-style-type: none;
+}
+
+.hideMenu{
+  display: none;
 }

@@ -67,7 +67,6 @@ class List extends React.Component{
   }
   renderMatchesList(){
     return this.props.matchesData.map(match =>{
-      console.log(this.props.matchesData);
       return(
         <div className={cx('item', styles.item)} key={match.id}>
           <div className={cx('content', styles.content)}>
