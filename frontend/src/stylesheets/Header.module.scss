@@ -11,7 +11,7 @@
     color: color(text-hovered);
   }
   .dropdown-menu p{
-    display: inline-block;
+    display: inline;
   }
   .dropdown-menu .dropdown-menu-icon{
     float: right;
@@ -55,7 +55,7 @@
 
 .show-menu{
   animation-name: polygonIn;
-  animation-duration: 1s;
+  animation-duration: 0.7s;
   animation-fill-mode: forwards;
   ul li{
     list-style-type: none;
@@ -70,12 +70,13 @@
 }
 
 .hide-menu{
-  animation-name: polygonOut;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-  ul li{
-    display: none;
-  }
+  // animation-name: polygonOut;
+  // animation-duration: 1s;
+  // animation-fill-mode: forwards;
+  // ul li{
+  //   display: none;
+  // }
+  display: none;
 }
 
 @keyframes polygonIn{
