@@ -4,13 +4,19 @@ import {NavLink} from 'react-router-dom';
 import {logoutUser} from '../../actions/AuthActions';
 import styles from '../../stylesheets/Header.module.scss';
 import { DropdownMenuIcon } from '../Header/DropdownMenuIcon';
+import cx from 'classnames';
 
 class Authentication extends React.Component{
 
-  state = { dropdownMenuOpen:false };
+  state = {
+    dropdownMenuOpen:false
+  };
 
   onLogoutClick = () => {
     this.props.logoutUser();
+    this.setState(previousState => ({
+      dropdownMenuOpen: !previousState.dropdownMenuOpen
+    }));
   }
 
   toggleDropdownMenu = () => {
@@ -21,9 +27,11 @@ class Authentication extends React.Component{
 
   renderDropdownMenuList = (shouldDisplay) => {
     return(
-      <ul className={styles[`${shouldDisplay}`]}>
-        <li>log out</li>
-      </ul>
+      <div className={cx(styles['menu-list'],styles[`${shouldDisplay}`])}>
+        <ul>
+          <li onClick={this.onLogoutClick}>Log out</li>
+        </ul>
+      </div>
     )
   }
 
@@ -43,13 +51,13 @@ class Authentication extends React.Component{
       <div>
         <div className={styles['header-item']}>
           <div className={styles['dropdown-menu']}>
-            {this.props.username}
-            <div className={styles['dropdown-menu-icon']} onClick={this.toggleDropdownMenu}>
+            <p>{this.props.username}</p>
+            <button className={cx(styles['dropdown-menu-icon'], `${this.state.dropdownMenuOpen ? styles['show'] : ''}`)} onClick={this.toggleDropdownMenu}>
               <DropdownMenuIcon />
-            </div>
+            </button>
           </div>
         </div>
-        {this.state.dropdownMenuOpen ? this.renderDropdownMenuList('showMenu') : this.renderDropdownMenuList('hideMenu')}
+        {this.state.dropdownMenuOpen ? this.renderDropdownMenuList('show-menu') : this.renderDropdownMenuList('hide-menu')}
       </div>
     )
 

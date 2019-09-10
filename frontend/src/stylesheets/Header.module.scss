@@ -1,51 +1,99 @@
 @import 'Variables';
 .header-item{
+  position: relative;
   font-family: $font, sans-serif;
   font-weight: bold;
   text-decoration: none;
   color: color(text);
   margin: 10px 10px;
+  z-index: 3;
   &:hover{
     color: color(text-hovered);
   }
-  .dropdown-menu {
+  .dropdown-menu p{
     display: inline-block;
   }
   .dropdown-menu .dropdown-menu-icon{
     float: right;
-    margin-left: 10px;
-    fill: #FA9C1D;
+    margin-left: 0px;
+    background: none;
+    border: none;
+    &:focus{
+      outline: none;
+    }
     &:hover{
       cursor: pointer;
-      fill: color(text);
     }
-  }
 
-  .dropdown-menu-icon{
-    &:active{
-      animation-name: rotateIcon;
-      animation-duration: 0.7s;
+    svg{
+      position: relative;
+      z-index: 3;
+      fill: #FA9C1D;
+      transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      transition: transform .2s ease-in-out;
+      -webkit-transition: transform .2s ease-in-out;
       transform-origin: 41% 41%;
     }
   }
-}
 
-@keyframes rotateIcon{
-    0% {
-        transform: rotate(0deg);
+  .dropdown-menu .dropdown-menu-icon.show{
+    svg{
+      transform: rotate(180deg);
     }
-    100% {
-        transform: rotate(180deg);
+  }
+}
+
+.menu-list{
+  position: absolute;
+  background-color: #58C9B9;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100px;
+}
+
+.show-menu{
+  animation-name: polygonIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  ul li{
+    list-style-type: none;
+    margin: 50px 50px;
+    font-family: $font, sans-serif;
+    font-weight: bold;
+    &:hover{
+      cursor: pointer;
+      color: color(text-hovered);
     }
+  }
 }
 
-.showMenu{
-  position: fixed;
-}
-.showMenu li{
-  list-style-type: none;
+.hide-menu{
+  animation-name: polygonOut;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  ul li{
+    display: none;
+  }
 }
 
-.hideMenu{
-  display: none;
+@keyframes polygonIn{
+  0% {
+    clip-path: polygon(0% 0%, 0 0, 0% 0%, 0% 0%, 0% 0%);
+  }
+
+  100%{
+    clip-path: polygon(25% 0%, 100% 0, 100% 100%, 25% 100%, 0% 50%);
+  }
+}
+
+@keyframes polygonOut{
+  0% {
+    clip-path: polygon(25% 0%, 100% 0, 100% 100%, 25% 100%, 0% 50%);
+  }
+
+  100%{
+    clip-path: polygon(0% 0%, 0 0, 0% 0%, 0% 0%, 0% 0%);
+  }
 }
