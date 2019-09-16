@@ -7,19 +7,22 @@ body{
 }
 .content{
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr 0.5fr;
+  grid-template-columns: 1fr 1.5fr 1fr auto;
   grid-auto-rows: minmax(10px, auto);
+  &:hover{
+    border-left: 4px solid color(text-hovered);
+  }
 
   @include large{
-    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+    grid-template-columns: 1fr 1fr 1fr auto;
   }
 
   @include medium{
-    grid-template-columns: 1fr 1fr 1fr 0.7fr;
+    grid-template-columns: 1fr 1fr 1fr auto;
   }
 
   @include small{
-    grid-template-columns: 0.3fr 1.2fr 0.3fr 0.8fr;
+    grid-template-columns: 0.3fr 1.2fr 0.3fr auto;
   }
 
   .item{
@@ -111,18 +114,83 @@ body{
   }
 }
 
-.resultsContainer{
-  display: grid;
-  grid-template-columns: 0.3fr 2fr 0.5fr;
-  width: 100%;
-  height: auto;
-  color: color(results-text);
+table {
+  border-collapse: collapse;
 
-  @include medium{
-    grid-template-columns: 0.3fr 2fr 0.7fr;
+  td, th{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+}
+
+.dropdown-header{
+  text-align: right;
+  span{
+    display: inline-block;
+    position: relative;
+    width: 0;
+    height: 0;
+    left: 3px;
+    &:hover{
+      cursor: pointer;
+    }
   }
 
-  .resultsTeamB, .resultsTeamA{
-    text-align: right;
+  span.delta-up{
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #C0C0C0;
+    bottom: 2px;
+    &:hover{
+      border-bottom: 7px solid color(text-hovered);
+    }
+  }
+
+  span.delta-down{
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #C0C0C0;
+    &:hover{
+      border-top: 7px solid color(text-hovered);
+    }
+  }
+}
+
+.shouldDisplay{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: 10px 10px;
+
+  .final-score-container{
+    text-align: center;
+    p{
+      font-size: 18px;
+      font-weight: 100;
+
+      span{
+        padding: 5px 5px;
+      }
+    }
+  }
+}
+
+.shouldHide{
+  display: none;
+}
+
+.login-button{
+  height: 50px;
+  width: 600px;
+  font-size: 25px;
+  margin: auto;
+  text-align: center;
+  margin-top: 30px;
+
+  span a{
+    color: color(text-prompt);
+    &:hover{
+      color: color(text-hovered);
+    }
   }
 }

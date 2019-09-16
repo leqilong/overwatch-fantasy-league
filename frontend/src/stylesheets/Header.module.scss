@@ -70,12 +70,6 @@
 }
 
 .hide-menu{
-  // animation-name: polygonOut;
-  // animation-duration: 1s;
-  // animation-fill-mode: forwards;
-  // ul li{
-  //   display: none;
-  // }
   display: none;
 }
 
@@ -86,15 +80,5 @@
 
   100%{
     clip-path: polygon(25% 0%, 100% 0, 100% 100%, 25% 100%, 0% 50%);
-  }
-}
-
-@keyframes polygonOut{
-  0% {
-    clip-path: polygon(25% 0%, 100% 0, 100% 100%, 25% 100%, 0% 50%);
-  }
-
-  100%{
-    clip-path: polygon(0% 0%, 0 0, 0% 0%, 0% 0%, 0% 0%);
   }
 }

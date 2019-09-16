@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import MatchResult from './MatchResult';
 import styles from '../../stylesheets/MatchesList.module.scss'
 import cx from 'classnames';
 
@@ -15,7 +16,7 @@ class List extends React.Component{
     }
   }
 
-  renderMatchSchedule = (timestamp) => {
+  renderMatchTime = (timestamp) => {
     const formatAMPM = (matchStartDateTime) => {
       let hours = matchStartDateTime.getHours();
       let minutes = matchStartDateTime.getMinutes();
@@ -43,32 +44,16 @@ class List extends React.Component{
   renderMatchResult = (match) => {
     if(match.state === 'CONCLUDED'){
       return(
-        match.scores[0]['value'] > match.scores[1]['value'] ? (
-          <div className={styles.resultsContainer}>
-            <div className={styles.resultsTeamA}>
-              WON
-            </div>
-            <div className={styles.resultsTeamB}>
-              LOSS
-            </div>
-          </div>
-        ) : (
-          <div className={styles.resultsContainer}>
-            <div className={styles.resultsTeamA}>
-              LOSS
-            </div>
-            <div className={styles.resultsTeamB}>
-              WON
-            </div>
-          </div>
-        )
+        <MatchResult
+          match={match}
+        />
       )
     }
   }
   renderMatchesList(){
     return this.props.matchesData.map(match =>{
       return(
-        <div className={cx('item', styles.item)} key={match.id}>
+        <div className={cx('item', styles['item'])} key={match.id}>
           <div className={cx('content', styles.content)}>
             <div className={styles.teamAContainer}>
               <div className={cx(styles.item, styles.teamName)}>
@@ -79,7 +64,7 @@ class List extends React.Component{
               </div>
             </div>
             <div className={styles.item}>
-              {this.renderMatchSchedule(match['startDate'])}
+              {this.renderMatchTime(match['startDate'])}
             </div>
             <div className={styles.teamBContainer}>
               <div className={cx(styles.item, styles.teamName)}>

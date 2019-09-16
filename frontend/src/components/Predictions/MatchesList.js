@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import List from './List';
 import {fetchMatches, fetchPredictions} from '../../actions/PredictionsActions';
 import _ from 'lodash';
+import styles from '../../stylesheets/MatchesList.module.scss';
 
 class MatchesList extends React.Component{
 
@@ -12,12 +13,12 @@ class MatchesList extends React.Component{
     this.props.fetchMatches();
   }
 
-  renderButtonIfNotLoggedIn = () => {
+  renderNotLoggedIn = () => {
     if(!this.props.isLoggedIn){
       return(
-        <Link to="/login" className="ui button primary">
-          Log in to start making predictions!
-        </Link>
+        <div className={styles['login-button']}>
+          <p><span><Link to="/login">Log in </Link></span>to start making predictions!</p>
+        </div>
       )
     }
   }
@@ -32,9 +33,9 @@ class MatchesList extends React.Component{
     }
     return(
       <div>
-        {this.renderButtonIfNotLoggedIn()}
+        {this.renderNotLoggedIn()}
         <List
-          matchesData={this.props.matches.filter( match => match['competitors'][0] != null)}
+          matchesData={this.props.matches.filter( match => match['competitors'][0] != null && match['competitors'][1] != null)}
           isLoggedIn = {this.props.isLoggedIn}
         />
       </div>
