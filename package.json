@@ -1,0 +1,30 @@
+{
+  "name": "overwatch-fantasy-league",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "concurrently \"cd frontend && npm run-script build\" \"cd server && npm run-script build\"",
+    "heroku-postbuild": "npm build",
+    "install": "(cd frontend && npm) && (cd server && npm)",
+    "start": "concurrently \"cd frontend && PORT=3000 npm start\" \"cd server && PORT=5000 npm start\"",
+    "start:prod": "cd server && npm start:prod"
+  },
+  "engines": {
+    "node": "10.15.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leqilong/overwatch-fantasy-league.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leqilong/overwatch-fantasy-league/issues"
+  },
+  "homepage": "https://github.com/leqilong/overwatch-fantasy-league#readme",
+  "dependencies": {
+    "concurrently": "^4.1.2"
+  }
+}
