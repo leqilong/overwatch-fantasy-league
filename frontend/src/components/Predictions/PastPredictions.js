@@ -18,7 +18,7 @@ class PastPredictions extends React.Component {
       return(
         <div>
           Looks like you don't have any predictions, start making them
-          <Link to="/">
+          <Link to="/matches">
            here
           </Link>
         </div>

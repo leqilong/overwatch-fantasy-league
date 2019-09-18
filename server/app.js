@@ -7,12 +7,12 @@ require('dotenv').config();
 let app = express();
 
 
-mongoose.connect('mongodb://localhost:27017/overwatchFantasyLeagueDB', {useNewUrlParser: true}, function(err){
+mongoose.connect('mongodb+srv://admin-leqi:demo@cluster0-ciz30.mongodb.net/overwatchFantasyLeagueDB', {useNewUrlParser: true}, function(err){
   if(err){
     console.log('Error connecting to: mongodb://localhost:27017/overwatchFantasyLeagueDB')
   }
   else{
-    console.log('Connected to: mongodb://localhost:27017/overwatchFantasyLeagueDB')
+    console.log('Connected to: mongodb+srv://admin-leqi:demo@cluster0-ciz30.mongodb.net/overwatchFantasyLeagueDB')
   }
 })
 
