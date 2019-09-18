@@ -3,9 +3,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 const PORT = process.env.PORT;
-if (PORT == null || PORT == ""){
-  PORT = 5000;
-}
 const authCheckMiddleware = require('./middleware/AuthCheck');
 const staticFiles = express.static(path.join(__dirname, '../frontend/build'));
 require('dotenv').config();
