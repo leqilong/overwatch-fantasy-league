@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "concurrently \"cd frontend && npm run-script build\" \"cd server && npm run-script build\"",
-    "heroku-postbuild": "npm build",
+    "heroku-postbuild": "npm run-script build",
     "install": "(cd frontend && npm install) && (cd server && npm install)",
     "start": "concurrently \"cd frontend && PORT=3000 npm start\" \"cd server && PORT=5000 npm start\"",
     "start:prod": "cd server && npm run start:prod"
