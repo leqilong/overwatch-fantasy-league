@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const PORT = process.env.PORT;
 const authCheckMiddleware = require('./middleware/AuthCheck');
-const staticFiles = express.static(path.join(__dirname, '../frontend/build'));
+const staticFiles = express.static(path.join(__dirname, '../../frontend/build'));
 require('dotenv').config();
 let app = express();
 
