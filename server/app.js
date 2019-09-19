@@ -32,7 +32,7 @@ app.use(express.json());
 require('./routes')(app);
 app.use('/predictions', authCheckMiddleware);
 app.use('/predictions/:id', authCheckMiddleware);
-
+app.use('/*', staticFiles);
 
 app.listen(PORT, (err) => {
   if (err) { console.log(err); };
