@@ -33,6 +33,12 @@ require('./routes')(app);
 app.use('/predictions', authCheckMiddleware);
 app.use('/predictions/:id', authCheckMiddleware);
 app.use('/*', staticFiles);
+app.get('/*', (req, res) => {
+  let url = path.join(__dirname, '../../frontend/build', 'index.html');
+  if (!url.startsWith('/app/')) 
+    url = url.substring(1);
+  res.sendFile(url);
+});
 
 app.listen(PORT, (err) => {
   if (err) { console.log(err); };
