@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import List from './List';
+import LoadingSpinner from '../LoadingSpinner';
 import {fetchMatches, fetchPredictions} from '../../actions/PredictionsActions';
 import _ from 'lodash';
 import styles from '../../stylesheets/MatchesList.module.scss';
@@ -26,9 +27,7 @@ class MatchesList extends React.Component{
   render(){
     if(_.isEmpty(this.props.matches)){
       return(
-        <div>
-          Loading...
-        </div>
+        <LoadingSpinner />
       )
     }
     return(

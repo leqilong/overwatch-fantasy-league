@@ -13,7 +13,7 @@ console.log(__dirname);
 
 mongoose.connect('mongodb+srv://admin-leqi:demo@cluster0-ciz30.mongodb.net/overwatchFantasyLeagueDB', {useNewUrlParser: true}, function(err){
   if(err){
-    console.log('Error connecting to: mongodb://localhost:27017/overwatchFantasyLeagueDB')
+    console.log('Error connecting to: mongodb+srv://admin-leqi:demo@cluster0-ciz30.mongodb.net/overwatchFantasyLeagueDB')
   }
   else{
     console.log('Connected to: mongodb+srv://admin-leqi:demo@cluster0-ciz30.mongodb.net/overwatchFantasyLeagueDB')
@@ -33,13 +33,6 @@ require('./routes')(app);
 app.use('/predictions', authCheckMiddleware);
 app.use('/predictions/:id', authCheckMiddleware);
 app.use('/*', staticFiles);
-
-// app.get('/*', (req, res) => {
-//   let url = path.join(__dirname, '../../frontend/build', 'index.html');
-//   if (!url.startsWith('/app/')) // we're on local windows
-//     url = url.substring(1);
-//   res.sendFile(url);
-// });
 
 app.listen(PORT, (err) => {
   if (err) { console.log(err); };
