@@ -1,10 +1,11 @@
 import React from 'react';
+import styles from '../../stylesheets/Rules.module.scss';
 
 
 class Rules extends React.Component{
   render(){
     return(
-      <div>
+      <div className={styles['rules-container']}>
         <h3>It's easy:</h3>
         <ul>
           <li>You can make and edit predictions until games go live</li>

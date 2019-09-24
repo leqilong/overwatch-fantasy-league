@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {fetchMatches, fetchPredictions, fetchLeaders} from '../../actions/PredictionsActions';
 import List from './List';
 import ScoreBoard from './ScoreBoard';
+import LoadingSpinner from '../LoadingSpinner';
 import _ from 'lodash';
 import styles from '../../stylesheets/PastPredictions.module.scss';
 
@@ -25,7 +26,9 @@ class PastPredictions extends React.Component {
       )
     }
     if(_.isEmpty(this.props.matches)){
-      return <div>Loading...</div>;
+      return(
+        <LoadingSpinner />
+      );
     }
     return(
       <div className={styles['past-predictions']}>

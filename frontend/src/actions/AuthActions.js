@@ -41,4 +41,5 @@ export const logoutUser = () => async dispatch => {
   localStorage.removeItem('username');
   localStorage.removeItem('token');
   dispatch({type: LOGOUT_USER})
+  history.push('/matches');
 }

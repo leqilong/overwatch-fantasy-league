@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingSpinner from '../LoadingSpinner';
 import {connect} from 'react-redux';
 import {fetchLeaders} from '../../actions/PredictionsActions';
 import _ from 'lodash';
@@ -26,9 +27,7 @@ class LeaderBoard extends React.Component{
   render(){
     if(_.isEmpty(this.props.users)){
       return(
-        <div>
-          Loading...
-        </div>
+        <LoadingSpinner />
       )
     }
     return(
@@ -38,7 +37,6 @@ class LeaderBoard extends React.Component{
 }
 
 const mapStateToProps = state => {
-  console.log(state.users);
   return {
     users: Object.values(state.users)
   }

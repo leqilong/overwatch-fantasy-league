@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchMatches, fetchPrediction, editPrediction} from '../../actions/PredictionsActions';
 import PredictionForm from './PredictionForm';
+import LoadingSpinner from '../LoadingSpinner';
 
 class PredictionEdit extends React.Component {
   componentDidMount(){
@@ -14,7 +15,9 @@ class PredictionEdit extends React.Component {
   }
   render(){
     if(!this.props.competition){
-      return <div>Loading...</div>;
+      return (
+        <LoadingSpinner />
+      );
     }
     return(
       <div>
