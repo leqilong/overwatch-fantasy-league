@@ -5,6 +5,10 @@ body{
   font-weight: bold;
   color: color(text);
 }
+
+.list-container{
+  margin-bottom: 20px;
+}
 .content{
   display: grid;
   grid-template-columns: 1fr 1.5fr 1fr auto;

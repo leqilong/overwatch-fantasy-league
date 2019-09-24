@@ -31,7 +31,7 @@ class MatchesList extends React.Component{
       )
     }
     return(
-      <div>
+      <div className={styles['list-container']}>
         {this.renderNotLoggedIn()}
         <List
           matchesData={this.props.matches.filter( match => match['competitors'][0] != null && match['competitors'][1] != null)}

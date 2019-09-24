@@ -32,7 +32,6 @@ class MatchResult extends React.Component{
   }
 
   render(){
-    console.log(this.props.match);
     return(
       <div>
         <div className={styles['dropdown-header']}>

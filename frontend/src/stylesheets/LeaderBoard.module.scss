@@ -1,0 +1,21 @@
+@import 'Variables';
+
+.row{
+  border-bottom: 1px solid rgba(34,36,38,.15);
+  &:hover{
+    border-left: 4px solid color(text-hovered);
+  }
+
+
+  .content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(50px, auto);
+    .item{
+      text-align: center;
+      font-size: 16px;
+      font-weight: lighter;
+      margin: auto;
+    }
+  }
+}

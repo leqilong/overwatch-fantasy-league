@@ -28,7 +28,7 @@ class Header extends React.Component {
 
   render(){
     return(
-      <div className={styles.header}>
+      <div className={styles['header']}>
         <div className='ui secondary pointing menu'>
           <NavLink
             to='/matches'

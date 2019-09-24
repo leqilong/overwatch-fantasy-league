@@ -2,6 +2,7 @@ import React from 'react';
 import LoadingSpinner from '../LoadingSpinner';
 import {connect} from 'react-redux';
 import {fetchLeaders} from '../../actions/PredictionsActions';
+import styles from '../../stylesheets/LeaderBoard.module.scss';
 import _ from 'lodash';
 
 class LeaderBoard extends React.Component{
@@ -11,12 +12,12 @@ class LeaderBoard extends React.Component{
   renderLeaders(){
     return this.props.users.map(user => {
       return(
-        <div className="item" key={user.username}>
-          <div className="content">
-            <div className="item">
+        <div className={styles['row']} key={user.username}>
+          <div className={styles['content']}>
+            <div className={styles['item']}>
               {user.username}
             </div>
-            <div className="item">
+            <div className={styles['item']}>
               {user.score}
             </div>
           </div>
