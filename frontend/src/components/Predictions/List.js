@@ -9,6 +9,7 @@ class List extends React.Component{
     const date = new Date();
     const currentTimestamp = date.getTime();
     if(this.props.isLoggedIn){
+      console.log(match['startDateTS']);
       return(
         match['startDateTS'] <= currentTimestamp ? (<div className={cx(styles.button, styles.disabled)}>Prediction Closed</div>) : match.isPredicted === true ? (<Link to={`/matches/predict/${match.id}/edit`} className={styles.button}>Edit Prediction</Link>) :
        (<Link to={`/matches/predict/${match.id}`} className={styles.button}>Make Prediction</Link>)
@@ -32,7 +33,7 @@ class List extends React.Component{
     return (
       <div className={styles.matchSchedule}>
         <div className={styles.matchDate}>
-          {matchStartDateTime.toString().split('2019')[0]}
+          {matchStartDateTime.toString().split('2019' || '2020')[0]}
         </div>
         <div className={styles.matchTime}>
           {formatAMPM(matchStartDateTime)}
