@@ -1,12 +1,14 @@
 @import 'Variables';
 .header{
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 4px solid #C65146;
 }
 .header-item{
   position: relative;
   font-family: $font, sans-serif;
   font-weight: bold;
   text-decoration: none;
+  font-size: 16px;
   color: color(text);
   margin: 10px 10px;
   z-index: 3;

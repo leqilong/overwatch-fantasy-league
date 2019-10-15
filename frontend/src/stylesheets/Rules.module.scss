@@ -1,6 +1,10 @@
 .rules-container{
   margin: 50px auto;
-  text-align: center;
+  text-align: left;
+  padding: 50px 100px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 10em;
 
   ul{
     list-style: none;
@@ -8,6 +12,16 @@
 
     li{
       margin-top: 20px;
+      &:before{
+        content: '>> ';
+        font-family: cursive;
+        font-weight: bold;
+        color: #DE6449;
+      }
     }
+  }
+
+  img{
+    height: 400px;
   }
 }

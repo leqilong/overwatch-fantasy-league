@@ -3,7 +3,6 @@ import {Field, reduxForm} from 'redux-form';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioButtonChecked from 'material-ui/svg-icons/toggle/radio-button-checked';
 import RadioButtonUnchecked from 'material-ui/svg-icons/toggle/radio-button-unchecked'
 import styles from '../../stylesheets/PredictionForm.module.scss';

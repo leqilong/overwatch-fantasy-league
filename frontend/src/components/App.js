@@ -18,18 +18,18 @@ const App = () =>{
   return(
     <Router history={history}>
     <Route path="/" exact component={LandingPage} />
-    <div className = {cx('ui', 'container', styles.container)}>
-          <Header />
-          <Switch>
-            <Route path="/matches" exact component={MatchesList} />
-            <Route path="/rules" exact component={Rules} />
-            <Route path="/leaderboard" exact component={LeaderBoard} />
-            <Route path="/pastPredictions" exact component={PastPredictions} />
-            <Route path="/matches/predict/:id" exact component={PredictionCreate} />
-            <Route path="/matches/predict/:id/edit" exact component={PredictionEdit} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/register" exact component={Register} />
-          </Switch>
+    <div className = {cx('ui', 'container', styles['container'])}>
+      <Header />
+      <Switch>
+        <Route path="/matches" exact component={MatchesList} />
+        <Route path="/rules" exact component={Rules} />
+        <Route path="/leaderboard" exact component={LeaderBoard} />
+        <Route path="/pastPredictions" exact component={PastPredictions} />
+        <Route path="/matches/predict/:id" exact component={PredictionCreate} />
+        <Route path="/matches/predict/:id/edit" exact component={PredictionEdit} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={Register} />
+      </Switch>
     </div>
     </Router>
 

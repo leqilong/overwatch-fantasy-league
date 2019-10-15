@@ -29,7 +29,7 @@ class Header extends React.Component {
   render(){
     return(
       <div className={styles['header']}>
-        <div className='ui secondary pointing menu'>
+        <div className='ui secondary menu'>
           <NavLink
             to='/matches'
             className={styles['header-item']}

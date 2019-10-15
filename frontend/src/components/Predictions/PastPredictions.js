@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import styles from '../../stylesheets/PastPredictions.module.scss';
 import {fetchMatches, fetchPredictions, fetchLeaders} from '../../actions/PredictionsActions';
 import List from './List';
 import ScoreBoard from './ScoreBoard';
 import LoadingSpinner from '../LoadingSpinner';
 import _ from 'lodash';
-import styles from '../../stylesheets/PastPredictions.module.scss';
+
 
 class PastPredictions extends React.Component {
   componentDidMount(){
@@ -47,9 +48,7 @@ class PastPredictions extends React.Component {
 const mapStateToProps = state => {
   let predictedMatches = [];
   if(!_.isEmpty(state.matches)){
-    Object.values(state.predictions).map(prediction => {
-      predictedMatches.push(...(state.matches[prediction.matchId] === undefined ? [] : [state.matches[prediction.matchId]]));
-    });
+    Object.values(state.predictions).map(prediction => predictedMatches.push(...(state.matches[prediction.matchId] === undefined ? [] : [state.matches[prediction.matchId]])));
   }
   return {
     predictions: Object.values(state.predictions),

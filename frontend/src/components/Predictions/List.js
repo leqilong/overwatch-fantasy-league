@@ -9,10 +9,9 @@ class List extends React.Component{
     const date = new Date();
     const currentTimestamp = date.getTime();
     if(this.props.isLoggedIn){
-      console.log(match['startDateTS']);
       return(
         match['startDateTS'] <= currentTimestamp ? (<div className={cx(styles.button, styles.disabled)}>Prediction Closed</div>) : match.isPredicted === true ? (<Link to={`/matches/predict/${match.id}/edit`} className={styles.button}>Edit Prediction</Link>) :
-       (<Link to={`/matches/predict/${match.id}`} className={styles.button}>Make Prediction</Link>)
+        (<Link to={`/matches/predict/${match.id}`} className={styles.button}>Make Prediction</Link>)
        )
     }
   }

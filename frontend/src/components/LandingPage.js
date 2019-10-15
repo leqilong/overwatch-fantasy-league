@@ -4,13 +4,14 @@ import styles from '../stylesheets/LandingPage.module.scss';
 
 const LandingImage = () => {
   return(
-    <div className={styles['landing-container']}>
+    <React.Fragment>
+      <div className={styles['landing-container']}></div>
       <div className={styles['text-container']}>
         <Link to='/matches' className={styles['landing-text']}>
           Overwatch Fantasy League
         </Link>
       </div>
-    </div>
+    </React.Fragment>
   )
 }
 
