@@ -1,7 +1,7 @@
 @import 'Variables';
 .header{
   margin-bottom: 10px;
-  border-bottom: 4px solid #C65146;
+  border-bottom: 4px solid color(header-border);
 }
 .header-item{
   position: relative;

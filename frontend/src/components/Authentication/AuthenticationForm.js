@@ -13,7 +13,7 @@ class AuthenticationForm extends React.Component{
   renderError({error, touched}){
     if(touched && error){
       return(
-        <div className="ui error message">
+        <div className="error message">
           <div className="header">{error}</div>
         </div>
       )
@@ -42,8 +42,8 @@ class AuthenticationForm extends React.Component{
   renderAuthError(){
     if(!_.isEmpty(this.props.authError)){
       return(
-        <div className="ui error message">
-          <div className="header">{`${this.props.authError}`}</div>
+        <div className="error message">
+          <div className="header">{this.props.authError}</div>
         </div>
       )
     }

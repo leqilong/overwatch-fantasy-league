@@ -7,7 +7,6 @@ class Rules extends React.Component{
     return(
       <div className={styles['rules-container']}>
         <div>
-          <h3>It's easy:</h3>
           <ul>
             <li>You can make and edit predictions until games go live</li>
             <li>You must predict which team will most likely win a series</li>
@@ -19,7 +18,7 @@ class Rules extends React.Component{
             <li>Match schedules are updated stage by stage</li>
           </ul>
         </div>
-        <img src='https://static.playoverwatch.com/media/artwork/tracer-concept.jpg' alt='tracer' />
+        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/disp/2a974f21361535.562ffea83330e.png' alt='tracer' />
       </div>
     )
   }

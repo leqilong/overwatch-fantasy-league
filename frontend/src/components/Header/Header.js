@@ -7,7 +7,7 @@ import styles from '../../stylesheets/Header.module.scss';
 class Header extends React.Component {
 
   activeLinkColor = () => {
-    return '#58C9B9';
+    return '#77AAAD';
   }
 
   renderPastPredictions = () => {

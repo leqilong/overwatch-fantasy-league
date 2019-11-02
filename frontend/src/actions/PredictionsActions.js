@@ -9,7 +9,7 @@ export const fetchMatches = () => async (dispatch, getState) => {
   const pastPredictions = getState().predictions;
   let matches = response.data;
   if(!_.isEmpty(pastPredictions)){
-    const predictedMatchIds = Object.keys(pastPredictions).map( pastPredictionKey => pastPredictions[pastPredictionKey].matchId);
+    const predictedMatchIds = Object.keys(pastPredictions).map(pastPredictionKey => pastPredictions[pastPredictionKey].matchId);
     matches = response.data.map(match => {
         if (predictedMatchIds.includes(match.id)) {
           return {...match, isPredicted: true}

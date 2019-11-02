@@ -5,8 +5,8 @@ $colors: (
     button-disabled: #BEB7A4,
     button-hovered: #BEB7A4,
     text: #47525E,
-    text-prompt: #58C9B9,
-    text-hovered: #FF7F11,
+    text-prompt: #77AAAD,
+    text-hovered: #EC6A5C,
     landing-text: #ffffff,
     results-text: #EE423D,
     submit: #FF7F11,
@@ -15,7 +15,8 @@ $colors: (
     submit-hovered-text: #FF7F11,
     reset-text: #FF7F11,
     reset-background: #ffffff,
-    loader: #58C9B9
+    loader: #77AAAD,
+    header-border: #C65146
 );
 
 @function color($color-name){

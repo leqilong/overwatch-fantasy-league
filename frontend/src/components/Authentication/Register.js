@@ -2,6 +2,7 @@ import React from 'react';
 import {submitRegister} from '../../actions/AuthActions';
 import {connect} from 'react-redux';
 import AuthenticationForm from './AuthenticationForm';
+import styles from '../../stylesheets/AuthenticationForm.module.scss';
 
 class Register extends React.Component{
   onSubmit = formValues => {
@@ -10,7 +11,7 @@ class Register extends React.Component{
 
   render(){
     return(
-      <div>
+      <div className={styles['form-container']}>
         <AuthenticationForm
           isRegistration={true}
           onSubmit={this.onSubmit}

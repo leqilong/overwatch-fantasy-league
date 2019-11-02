@@ -1,19 +1,23 @@
 @import 'Variables';
 @import './PredictionForm.module.scss';
 
-h2, h4{
-  text-align: center;
-}
-
-.form{
-  max-width: 60%;
-  margin: auto;
+.form-container{
   margin-top: 50px;
-}
+  
+  h2, h4{
+    text-align: center;
+  }
 
-.link{
-  color: color(button);
-  &:hover{
-    color: color(button-hovered);
+  .form{
+    max-width: 60%;
+    margin: auto;
+    margin-top: 50px;
+  }
+
+  .link{
+    color: color(button);
+    &:hover{
+      color: color(button-hovered);
+    }
   }
 }

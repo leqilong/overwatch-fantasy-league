@@ -12,7 +12,7 @@ class Login extends React.Component{
 
   render(){
     return(
-      <div>
+      <div className={styles['form-container']}>
         <h2>Log in to manage your predictions!</h2>
         <AuthenticationForm
           onSubmit={this.onSubmit}

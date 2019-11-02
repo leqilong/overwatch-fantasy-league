@@ -5,7 +5,6 @@ import { LOGIN_USER, REGISTER_USER, LOGOUT_USER } from './Types';
 export const submitLogin = (formValues) => async dispatch => {
   const response = await predictions.post('/login', formValues)
                                     .catch(error => {
-                                      console.log(error.response.data);
                                       dispatch({
                                         type: 'GET_ERRORS',
                                         payload: error.response.data
