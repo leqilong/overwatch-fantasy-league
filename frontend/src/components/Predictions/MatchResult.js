@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../stylesheets/MatchesList.module.scss'
+import resultStyles from '../../stylesheets/MatchResult.module.scss';
 
 class MatchResult extends React.Component{
 
@@ -20,7 +21,7 @@ class MatchResult extends React.Component{
     return(
       <React.Fragment>
         <td>{match['competitors'][competitorIndex]['abbreviatedName']}</td>
-        {match.games.map(game =>{ return(<th key={game['id']}>{game['points'][competitorIndex]}</th>)})}
+        {match.games.map(game =>{ return(<td key={game['id']}>{game['points'][competitorIndex]}</td>)})}
       </React.Fragment>
     )
   }
@@ -53,13 +54,15 @@ class MatchResult extends React.Component{
               <span>{this.props.match['competitors'][1]['abbreviatedName']}</span>
             </p>
           </div>
-          <table>
-            <tbody>
-              <tr>{this.renderMapsTableHeader(this.props.match.games)}</tr>
-              <tr>{this.renderMapScoresTableRow(this.props.match, 0)}</tr>
-              <tr>{this.renderMapScoresTableRow(this.props.match, 1)}</tr>
-            </tbody>
-          </table>
+          <div className={resultStyles['table-container']}>
+            <table className={resultStyles['score-table']}>
+              <tbody>
+                <tr>{this.renderMapsTableHeader(this.props.match.games)}</tr>
+                <tr>{this.renderMapScoresTableRow(this.props.match, 0)}</tr>
+                <tr>{this.renderMapScoresTableRow(this.props.match, 1)}</tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     )
