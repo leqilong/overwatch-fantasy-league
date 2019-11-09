@@ -9,6 +9,7 @@
   &:hover{
     transform: scale(1.01);
     box-shadow: 2px 4px 4px #E0E3DA;
+    transition: transform 0.3s;
   }
 }
 .score-table{

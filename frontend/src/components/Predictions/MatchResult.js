@@ -8,6 +8,12 @@ class MatchResult extends React.Component{
     resultDetailsOpen: false
   };
 
+  toggleResultDetails = () => {
+    this.setState(previousState => ({
+      resultDetailsOpen: !previousState.resultDetailsOpen
+    }));
+  }
+  
   renderMapsTableHeader(games){
     return(
       <React.Fragment>
@@ -24,12 +30,6 @@ class MatchResult extends React.Component{
         {match.games.map(game =>{ return(<td key={game['id']}>{game['points'][competitorIndex]}</td>)})}
       </React.Fragment>
     )
-  }
-
-  toggleResultDetails = () => {
-    this.setState(previousState => ({
-      resultDetailsOpen: !previousState.resultDetailsOpen
-    }));
   }
 
   render(){
