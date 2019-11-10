@@ -1,10 +1,10 @@
 .rules-container{
-  margin: 50px auto;
+  margin: 20px auto;
   text-align: left;
-  padding: 50px 100px;
+  padding: 20px 40px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-column-gap: 10em;
+  grid-template-columns: 2fr 0.5fr;
+  grid-column-gap: 5em;
 
   ul{
     list-style: none;
@@ -12,6 +12,8 @@
 
     li{
       margin-top: 20px;
+      letter-spacing: 1px;
+      color: #8b8687;
       &:before{
         content: '>> ';
         font-family: cursive;
@@ -22,6 +24,7 @@
   }
 
   img{
-    height: 400px;
+    width: 20em;
+    top: 30%;
   }
 }

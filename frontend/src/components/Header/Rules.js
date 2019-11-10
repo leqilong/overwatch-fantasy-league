@@ -18,7 +18,7 @@ class Rules extends React.Component{
             <li>Match schedules are updated stage by stage</li>
           </ul>
         </div>
-        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/disp/2a974f21361535.562ffea83330e.png' alt='tracer' />
+        <img src='https://myrealdomain.com/images/overwatch-tracer-png-1.png' alt='tracer' />
       </div>
     )
   }
