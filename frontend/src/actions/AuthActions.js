@@ -1,4 +1,4 @@
-import predictions from '../apis/predictions';
+import predictions from '../apis/request';
 import history from '../history';
 import { LOGIN_USER, REGISTER_USER, LOGOUT_USER } from './Types';
 

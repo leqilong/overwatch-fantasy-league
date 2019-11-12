@@ -5,6 +5,7 @@ import LandingPage from './LandingPage';
 import Rules from './Header/Rules';
 import LeaderBoard from './Header/LeaderBoard';
 import MatchesList from './Predictions/MatchesList';
+import FantasyLeague from './Fantasy/FantasyLeague';
 import PredictionCreate from './Predictions/PredictionCreate';
 import PastPredictions from './Predictions/PastPredictions';
 import PredictionEdit from './Predictions/PredictionEdit';
@@ -22,6 +23,7 @@ const App = () =>{
       <Header />
       <Switch>
         <Route path="/matches" exact component={MatchesList} />
+        <Route path="/fantasy" exact component={FantasyLeague} />
         <Route path="/rules" exact component={Rules} />
         <Route path="/leaderboard" exact component={LeaderBoard} />
         <Route path="/pastPredictions" exact component={PastPredictions} />

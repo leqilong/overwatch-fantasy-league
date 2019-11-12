@@ -29,5 +29,27 @@ module.exports = {
       pathname: baseUrlConfig.path,
       query: params
     });
+  },
+
+  generateFetchPlayersURL: function(){
+    const baseUrlConfig = config.baseUrl;
+    baseUrlConfig['path'] = '/players';
+
+    return url.format({
+      protocol: baseUrlConfig.protocol,
+      hostname: baseUrlConfig.hostname,
+      pathname: baseUrlConfig.path
+    });
+  },
+
+  generateFetchPlayersStatsURL: function(){
+    const baseUrlConfig = config.baseUrl;
+    baseUrlConfig['path'] = '/stats/players';
+
+    return url.format({
+      protocol: baseUrlConfig.protocol,
+      hostname: baseUrlConfig.hostname,
+      pathname: baseUrlConfig.path
+    });
   }
 }

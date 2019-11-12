@@ -40,6 +40,15 @@ class Header extends React.Component {
             Overwatch Fantasy League
           </NavLink>
           <div className='right menu'>
+            <NavLink
+              to='/fantasy'
+              className={styles['header-item']}
+              activeStyle={{
+                color: `${this.activeLinkColor()}`
+              }}
+            >
+              Fantasy
+            </NavLink>
             {this.renderPastPredictions()}
             <NavLink
               to='/rules'

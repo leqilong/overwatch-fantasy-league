@@ -1,4 +1,4 @@
-import predictions from '../apis/predictions';
+import predictions from '../apis/request';
 import history from '../history';
 import _ from 'lodash';
 import { FETCH_MATCHES, FETCH_MATCH, CREATE_PREDICTION, FETCH_PREDICTIONS, FETCH_PREDICTION, EDIT_PREDICTION, FETCH_LEADERS } from './Types';

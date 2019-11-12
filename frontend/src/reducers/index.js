@@ -5,6 +5,8 @@ import predictionReducer from './predictionReducer';
 import authReducer from './authReducer';
 import errorReducer from './errorReducer';
 import userReducer from './userReducer';
+import playerReducer from './playerReducer';
+import statsReducer from './statsReducer';
 
 export default combineReducers({
   predictions: predictionReducer,
@@ -12,5 +14,7 @@ export default combineReducers({
   form: formReducer,
   auth: authReducer,
   error: errorReducer,
-  users: userReducer
+  users: userReducer,
+  players: playerReducer,
+  stats: statsReducer
 });
