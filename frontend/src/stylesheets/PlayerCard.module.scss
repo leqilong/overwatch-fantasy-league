@@ -1,10 +1,59 @@
 @import 'Variables';
 
 .icon{
-  height: 18px;
-  fill: color(icon);
+  height: 14px;
+  fill: color(text);
 }
 
-img{
-  width: 80px;
+.headshot-container{
+  > img{
+    position: relative;
+    display: block;
+    margin: 10px auto;
+    width: 100px;
+    clip-path: polygon(0% 0%, 100% 3%, 98% 99%, 3% 93%);
+    background-color: rgba(166, 23, 45, 0.4);
+    z-index: -1;
+
+    &:hover{
+      opacity: 0.5;
+      filter: alpha(opacity=50); /* For IE8 and earlier */
+    }
+  }
+}
+
+@for $i from 1 through 154{
+  .player-container:nth-child(#{$i}){
+    .headshot-container > img, .headshot-container > img:hover{
+      clip-path: polygon(percentage(random(3)/100) percentage(random(5)/100), percentage((random(4) + 96)/100) percentage(random(5)/100), percentage((random(6)+94)/100) percentage((random(4)+96)/100), percentage(random(3)/100) percentage((random(7)+93)/100));
+    }
+  }
+}
+
+.player-name-container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  img{
+    width: 20px;
+    background-color: transparent;
+  }
+
+  p{
+    margin-bottom: 0px;
+  }
+}
+
+.stats-container{
+  ul{
+    padding-inline-start: 5px;
+    list-style-type: none;
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    li{
+      height: 15px;
+    }
+  }
 }

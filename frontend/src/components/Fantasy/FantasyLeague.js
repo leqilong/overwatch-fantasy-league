@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {fetchPlayers, fetchPlayersStats} from '../../actions/FantasyLeagueActions';
 import PlayerCard from './PlayerCard';
+import styles from '../../stylesheets/FantasyLeague.module.scss';
 
 class FantasyLeague extends React.Component{
 
@@ -26,7 +27,7 @@ class FantasyLeague extends React.Component{
 
   render(){
     return(
-      <div>
+      <div className={styles['players-container']}>
         {this.renderPlayersList()}
       </div>
     )
