@@ -45,11 +45,13 @@ const PlayerCard = (props) => {
     <div className={styles['player-container']} key={props.player.id}>
       <div className={styles['headshot-container']}>
         <img src={props.player.headshot} alt='player profile' />
-        <div className={styles['player-name-container']}>
-          {roleIcons[props.player.attributes.role]}
-          <p>{props.player.name}</p>
-          <img src={props.player.teams[0].team.icon} alt='team logo' />
-        </div>
+      </div>
+      <div className={styles['icon-container']}>
+        {roleIcons[props.player.attributes.role]}
+      </div>
+      <div className={styles['player-name-container']}>
+        <p>{props.player.name}</p>
+        <img src={props.player.teams[0].team.icon} alt='team logo' />
       </div>
       <div className={styles['stats-container']}>
         {renderStats(props.stats)}

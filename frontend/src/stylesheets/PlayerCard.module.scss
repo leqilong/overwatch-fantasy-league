@@ -1,31 +1,52 @@
 @import 'Variables';
 
-.icon{
-  height: 14px;
-  fill: color(text);
+.player-container{
+  position: relative;
+  text-align: center;
+}
+.icon-container{
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  margin: -20px auto;
+  left: 43%;
+  background-color: color(header-border);
+  clip-path: circle(50%);
+
+  .icon{
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: 14px;
+    width: 14px;
+    fill: #FFFFFF;
+  }
+
 }
 
 .headshot-container{
+  display: inline-block;
+  position: relative;
+  padding-top: 5px;
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  background: color(header-border);
+  clip-path: circle(50%);
+  margin: 0 auto;
+
   > img{
-    position: relative;
-    display: block;
-    margin: 10px auto;
-    width: 100px;
-    clip-path: polygon(0% 0%, 100% 3%, 98% 99%, 3% 93%);
-    background-color: rgba(166, 23, 45, 0.4);
-    z-index: -1;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 94px;
+    height: 94px;
+    clip-path: circle(50%);
+    background-color: color(background);
 
     &:hover{
       opacity: 0.5;
-      filter: alpha(opacity=50); /* For IE8 and earlier */
-    }
-  }
-}
-
-@for $i from 1 through 154{
-  .player-container:nth-child(#{$i}){
-    .headshot-container > img, .headshot-container > img:hover{
-      clip-path: polygon(percentage(random(3)/100) percentage(random(5)/100), percentage((random(4) + 96)/100) percentage(random(5)/100), percentage((random(6)+94)/100) percentage((random(4)+96)/100), percentage(random(3)/100) percentage((random(7)+93)/100));
+      cursor: pointer;
     }
   }
 }
@@ -42,18 +63,30 @@
 
   p{
     margin-bottom: 0px;
+    letter-spacing: 2px;
+    font-size: 12px;
+    color: #383A3F;
+
   }
 }
 
 .stats-container{
+  border: 1px dashed #F6B352;
+  border-top: 2px solid #F6B352;
+  border-radius: 0px 0px 10px 10px;
+  margin-top: 5px;
   ul{
     padding-inline-start: 5px;
     list-style-type: none;
     font-size: 9px;
+    font-weight: lighter;
     letter-spacing: 2px;
+    margin: 5px auto;
 
     li{
       height: 15px;
+      text-align: left;
+      color: #7C7877;
     }
   }
 }
