@@ -62,15 +62,18 @@
   animation-name: polygonIn;
   animation-duration: 0.7s;
   animation-fill-mode: forwards;
-  ul li{
-    list-style-type: none;
-    margin: 50px 50px;
-    font-family: $font, sans-serif;
-    font-weight: bold;
-    &:hover{
-      cursor: pointer;
-      color: color(text-hovered);
-    }
+  ul{
+    margin: 40px 20px;
+    li{
+      list-style-type: none;
+      text-align: right;
+      font-family: $font, sans-serif;
+      font-weight: bold;
+      &:hover{
+        cursor: pointer;
+        color: color(text-hovered);
+      }
+   }
   }
 }
 

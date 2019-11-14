@@ -9,7 +9,7 @@ import cx from 'classnames';
 class Authentication extends React.Component{
 
   state = {
-    dropdownMenuOpen:false
+    dropdownMenuOpen: false
   };
 
   onLogoutClick = () => {
@@ -29,6 +29,7 @@ class Authentication extends React.Component{
     return(
       <div className={cx(styles['menu-list'],styles[`${shouldDisplay}`])}>
         <ul>
+          <li>{this.props.username}</li>
           <li onClick={this.onLogoutClick}>Log out</li>
         </ul>
       </div>
@@ -51,7 +52,6 @@ class Authentication extends React.Component{
       <div>
         <div className={styles['header-item']}>
           <div className={styles['dropdown-menu']}>
-            <p>{this.props.username}</p>
             <button className={cx(styles['dropdown-menu-icon'], `${this.state.dropdownMenuOpen ? styles['show'] : ''}`)} onClick={this.toggleDropdownMenu}>
               <DropdownMenuIcon />
             </button>
