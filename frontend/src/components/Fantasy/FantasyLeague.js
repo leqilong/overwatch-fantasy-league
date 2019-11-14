@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {fetchPlayers, fetchPlayersStats} from '../../actions/FantasyLeagueActions';
+import {fetchPlayers, fetchPlayersStats, getRoleFilter} from '../../actions/FantasyLeagueActions';
 import PlayerCard from './PlayerCard';
+import { roleIcons } from './RoleIcons';
+import { getVisiblePlayers } from '../../selectors/playersSelectors';
 import styles from '../../stylesheets/FantasyLeague.module.scss';
+
 
 class FantasyLeague extends React.Component{
 
   componentDidMount(){
     this.props.fetchPlayers();
     this.props.fetchPlayersStats();
+    this.props.getRoleFilter('all');
   }
 
   renderPlayersList(){
@@ -27,8 +31,16 @@ class FantasyLeague extends React.Component{
 
   render(){
     return(
-      <div className={styles['players-container']}>
-        {this.renderPlayersList()}
+      <div>
+        <div className={styles['role-menu-container']}>
+          <div className={styles['role-type']} onClick={()=>this.props.getRoleFilter('all')}>All</div>
+          <div className={styles['role-type']} onClick={()=>this.props.getRoleFilter('tank')}><span className={styles['role-icon']}>{roleIcons.tank}</span> Tank</div>
+          <div className={styles['role-type']} onClick={()=>this.props.getRoleFilter('offense')}><span className={styles['role-icon']}>{roleIcons.offense}</span> Damage</div>
+          <div className={styles['role-type']} onClick={()=>this.props.getRoleFilter('support')}><span className={styles['role-icon']}>{roleIcons.support}</span> Support</div>
+        </div>
+        <div className={styles['players-container']}>
+          {this.renderPlayersList()}
+        </div>
       </div>
     )
   }
@@ -36,9 +48,9 @@ class FantasyLeague extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    players: state.players,
+    players: getVisiblePlayers(state),
     stats: state.stats
   };
 }
 
-export default connect(mapStateToProps, {fetchPlayers, fetchPlayersStats})(FantasyLeague);
+export default connect(mapStateToProps, {fetchPlayers, fetchPlayersStats, getRoleFilter})(FantasyLeague);

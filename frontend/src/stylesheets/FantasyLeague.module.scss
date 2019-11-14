@@ -1,3 +1,35 @@
+@import 'Variables';
+
+.role-menu-container{
+  display: flex;
+  justify-content: space-around;
+
+
+  .role-type{
+    background-color: #E0E3DA;
+    width: 25%;
+    height: 25px;
+    text-align: center;
+    margin: auto 1px;
+    border-radius: 1px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    font-size: 10px;
+
+    &:hover{
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .role-icon{
+      svg{
+        height: 15px;
+        fill: color(text);
+      }
+    }
+  }
+}
+
 .players-container{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));

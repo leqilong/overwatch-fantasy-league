@@ -3,7 +3,6 @@ import styles from '../../stylesheets/PlayerCard.module.scss';
 import { roleIcons } from './RoleIcons';
 
 const PlayerCard = (props) => {
-  console.log(props.stats);
   const renderStats = (stats) => {
     switch(stats.role){
       case 'offense':

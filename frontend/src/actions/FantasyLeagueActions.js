@@ -1,4 +1,4 @@
-import { FETCH_PLAYERS, FETCH_PLAYERS_STATS } from './Types';
+import { FETCH_PLAYERS, FETCH_PLAYERS_STATS, GET_ROLE_FILTER } from './Types';
 import fantasy from '../apis/request';
 
 export const fetchPlayers = () => async dispatch => {
@@ -9,4 +9,8 @@ export const fetchPlayers = () => async dispatch => {
 export const fetchPlayersStats = () => async dispatch => {
   const response = await fantasy.get('/playersStats');
   dispatch({type: FETCH_PLAYERS_STATS, payload: response.data})
+}
+
+export const getRoleFilter = (role) => async dispatch => {
+  dispatch({type: GET_ROLE_FILTER, payload: role});
 }

@@ -7,6 +7,7 @@ import errorReducer from './errorReducer';
 import userReducer from './userReducer';
 import playerReducer from './playerReducer';
 import statsReducer from './statsReducer';
+import roleFilterReducer from './roleFilterReducer';
 
 export default combineReducers({
   predictions: predictionReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   error: errorReducer,
   users: userReducer,
   players: playerReducer,
-  stats: statsReducer
+  stats: statsReducer,
+  roleFilter: roleFilterReducer
 });
