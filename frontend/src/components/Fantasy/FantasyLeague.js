@@ -6,6 +6,7 @@ import RosterForm from './RosterForm';
 import { roleIcons } from './RoleIcons';
 import { getVisiblePlayers } from '../../selectors/playersSelectors';
 import styles from '../../stylesheets/FantasyLeague.module.scss';
+import cx from 'classnames';
 
 
 class FantasyLeague extends React.Component{
@@ -15,6 +16,10 @@ class FantasyLeague extends React.Component{
     this.props.fetchPlayersStats();
     this.props.getRoleFilter('all');
   }
+
+  state = {
+    filterClicked: false
+  };
 
   handleDraftButtonClick = player => {
     this.props.draftPlayer(player);

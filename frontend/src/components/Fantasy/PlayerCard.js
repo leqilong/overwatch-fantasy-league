@@ -64,7 +64,7 @@ const PlayerCard = (props) => {
           className={`${ portraitHovered ? styles['show-btn'] : styles['hide-btn']}`}
           onClick={handleClick}
         >
-          Draft
+          draft
         </button>
       </div>
       <div className={styles['icon-container']}>

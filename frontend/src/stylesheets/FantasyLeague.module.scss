@@ -3,6 +3,7 @@
 .fantasy-league-container{
   display: grid;
   grid-template-columns: 4fr 1fr;
+  grid-gap: 2em;
 }
 .role-menu-container{
   display: flex;
@@ -12,13 +13,14 @@
   .role-type{
     background-color: #E0E3DA;
     width: 25%;
-    height: 25px;
+    height: 20px;
     text-align: center;
     margin: auto 1px;
     border-radius: 1px;
     text-transform: uppercase;
     opacity: 0.5;
     font-size: 10px;
+    line-height: 20px;
 
 
     &:hover{
@@ -28,8 +30,9 @@
 
     .role-icon{
       svg{
-        height: 15px;
+        height: 10px;
         fill: color(text);
+        margin-right: 5px;
       }
     }
   }

@@ -43,10 +43,6 @@
     height: 94px;
     clip-path: circle(50%);
     background-color: color(background);
-
-    &:hover{
-      opacity: 0.5;
-    }
   }
 
   .hide-btn{
@@ -57,7 +53,11 @@
     position: absolute;
     top: 40%;
     right: 25%;
-    background-color: red;
+    background-color: rgba(246, 179, 82, 0.8);
+    border: 0px;
+    border-radius: 2px;
+    letter-spacing: 2px;
+    color: #3C3530;
 
     &:hover{
       cursor: pointer;

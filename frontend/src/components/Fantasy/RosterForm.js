@@ -2,6 +2,7 @@ import React from 'react';
 import TankForm from './TankForm';
 import DamageForm from './DamageForm';
 import SupportForm from './SupportForm';
+import styles from'../../stylesheets/RosterForm.module.scss';
 
 class RosterForm extends React.Component{
   renderTankRosterList = () => {
@@ -48,28 +49,28 @@ class RosterForm extends React.Component{
 
   render(){
     return(
-      <div>
-        <div>
-          <p>Your Line-up</p>
+      <div className={styles['roster-form-container']}>
+        <div className={styles['header']}>
+          Your Lineup
         </div>
-        <div>
-          <div className='tank-container'>
+        <div className={styles['selection-container']}>
+          <div className={styles['tank-container']}>
             <ul>
               {this.renderTankRosterList()}
             </ul>
           </div>
-          <div className='damage-container'>
+          <div className={styles['damage-container']}>
             <ul>
               {this.renderDamageRosterList()}
             </ul>
           </div>
-          <div className='support-container'>
+          <div className={styles['support-container']}>
             <ul>
               {this.renderSupportRosterList()}
             </ul>
           </div>
         </div>
-        <button>Save</button>
+        <button className={styles['btn']}>Save</button>
       </div>
     )
   }
