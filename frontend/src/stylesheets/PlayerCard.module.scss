@@ -46,6 +46,20 @@
 
     &:hover{
       opacity: 0.5;
+    }
+  }
+
+  .hide-btn{
+    display: none;
+  }
+
+  .show-btn{
+    position: absolute;
+    top: 40%;
+    right: 25%;
+    background-color: red;
+
+    &:hover{
       cursor: pointer;
     }
   }

@@ -1,5 +1,9 @@
 @import 'Variables';
 
+.fantasy-league-container{
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
 .role-menu-container{
   display: flex;
   justify-content: space-around;
