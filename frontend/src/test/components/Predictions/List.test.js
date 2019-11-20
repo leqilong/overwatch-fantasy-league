@@ -43,30 +43,7 @@ describe('if logged in', ()=>{
     describe('if no prediction has been made', ()=>{
       let wrapper;
       beforeEach(()=> {
-        const props = {
-          matchesData: [{
-            isPredicted: false,
-            competitors: {
-              0: {
-                name: 'Seoul Dynasty',
-                icon: 'https://bnetcmsus-a.akamaihd.net/cms/page_media/E9MU0AK0JIXT1507858876249.svg'
-              },
-              1: {
-                name: 'Vancouver Titans',
-                icon: 'https://bnetcmsus-a.akamaihd.net/cms/gallery/0KOSPFU6UC411543976755522.svg'
-              }
-            },
-            startDate: '2019-09-05T23:00:00.000Z',
-            id: 30151,
-            state: 'PENDING',
-            scores: [
-              {value: 0},
-              {value: 0}
-            ]
-          }],
-          isLoggedIn: true
-        }
-        wrapper = setup(props);
+        wrapper = setup({...defaultProps, ...{isLoggedIn: true}});
       });
       test('renders Make Prediction text', ()=>{
         const buttonText = wrapper.find('Link').props()['children'];
@@ -77,29 +54,9 @@ describe('if logged in', ()=>{
     describe('if a prediction has been made', ()=>{
       let wrapper;
       beforeEach(()=> {
-        const props = {
-          matchesData: [{
-            isPredicted: true,
-            competitors: {
-              0: {
-                name: 'Seoul Dynasty',
-                icon: 'https://bnetcmsus-a.akamaihd.net/cms/page_media/E9MU0AK0JIXT1507858876249.svg'
-              },
-              1: {
-                name: 'Vancouver Titans',
-                icon: 'https://bnetcmsus-a.akamaihd.net/cms/gallery/0KOSPFU6UC411543976755522.svg'
-              }
-            },
-            startDate: '2019-09-05T23:00:00.000Z',
-            id: 30151,
-            state: 'PENDING',
-            scores: [
-              {value: 0},
-              {value: 0}
-            ]
-          }],
-          isLoggedIn: true
-        }
+        const props = Object.create(defaultProps);
+        props.matchesData[0].isPredicted = true;
+        props.isLoggedIn = true;
         wrapper = setup(props);
       });
       test('renders Edit Prediction text', ()=>{
@@ -123,33 +80,14 @@ describe('if not logged in', ()=> {
 
 describe('if a match concluded', ()=> {
   let wrapper;
-  const props = {
-    matchesData: [{
-      competitors: {
-        0: {
-          name: 'Seoul Dynasty',
-          icon: 'https://bnetcmsus-a.akamaihd.net/cms/page_media/E9MU0AK0JIXT1507858876249.svg'
-        },
-        1: {
-          name: 'Vancouver Titans',
-          icon: 'https://bnetcmsus-a.akamaihd.net/cms/gallery/0KOSPFU6UC411543976755522.svg'
-        }
-      },
-      startDate: '2019-09-05T23:00:00.000Z',
-      id: 30151,
-      state: 'CONCLUDED',
-      scores: [
-        {value: 0},
-        {value: 0}
-      ]
-    }]
-  }
+  const props = Object.create(defaultProps);
+  props.matchesData[0].state = 'CONCLUDED';
   beforeEach(()=> {
     wrapper = setup(props);
   });
 
   test('renders match result', ()=>{
-    const matchResult = wrapper.find('.resultsContainer');
+    const matchResult = wrapper.find('.final-score-container');
     expect(matchResult.length).toBe(1);
   });
 });
@@ -160,7 +98,7 @@ describe('if a match is pending', ()=>{
     wrapper = setup();
   });
   test('does not render match result', ()=> {
-    const matchResult = wrapper.find('.resultsContainer');
+    const matchResult = wrapper.find('.final-score-container');
     expect(matchResult.length).toBe(0);
   });
 })

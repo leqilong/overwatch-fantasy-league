@@ -1,5 +1,5 @@
 import moxios from 'moxios';
-import http from '../../apis/predictions';
+import http from '../../apis/request';
 import { fetchMatchesMockData } from '../mocks/fetchMatchesMockData';
 import { fetchMatchMockData } from '../mocks/fetchMatchMockData';
 import { createPredictionMockData } from '../mocks/createPredictionMockData';
