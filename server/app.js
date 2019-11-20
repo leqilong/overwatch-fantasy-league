@@ -8,9 +8,6 @@ const staticFiles = express.static(path.join(__dirname, '../../frontend/build'))
 require('dotenv').config();
 let app = express();
 
-console.log(staticFiles);
-console.log(__dirname);
-
 mongoose.connect('mongodb+srv://admin-leqi:demo@cluster0-ciz30.mongodb.net/overwatchFantasyLeagueDB', {useNewUrlParser: true}, function(err){
   if(err){
     console.log('Error connecting to: mongodb+srv://admin-leqi:demo@cluster0-ciz30.mongodb.net/overwatchFantasyLeagueDB')
