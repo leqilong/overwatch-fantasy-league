@@ -1,12 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import TankForm from './TankForm';
 import DamageForm from './DamageForm';
 import SupportForm from './SupportForm';
 import styles from'../../stylesheets/RosterForm.module.scss';
+import cx from 'classnames';
+import { getCurrentlyDraftedTankPlayers, getCurrentlyDraftedDamagePlayers, getCurrentlyDraftedSupportPlayers } from '../../selectors/playersSelectors';
 
 class RosterForm extends React.Component{
   renderTankRosterList = () => {
-    const tankPlayers = this.props.draft.filter(player => player.role === 'tank');
+    const tankPlayers = this.props.draft.filter(player => player.role === 'tank').slice(-2); //get the most recently picked 2 players per role
     return tankPlayers.length === 0 ? (
       <React.Fragment>
         {[1, 2].map(i => <TankForm key={i} player='Tank' />)}
@@ -20,7 +23,7 @@ class RosterForm extends React.Component{
   }
 
   renderDamageRosterList = () => {
-    const damagePlayers = this.props.draft.filter(player => player.role === 'offense');
+    const damagePlayers = this.props.draft.filter(player => player.role === 'offense').slice(-2); //get the most recently picked 2 players per role
     return damagePlayers.length === 0 ? (
       <React.Fragment>
         {[1, 2].map(i => <DamageForm key={i} player='Damage' />)}
@@ -34,7 +37,7 @@ class RosterForm extends React.Component{
   }
 
   renderSupportRosterList = () => {
-    const supportPlayers = this.props.draft.filter(player => player.role === 'support');
+    const supportPlayers = this.props.draft.filter(player => player.role === 'support').slice(-2); //get the most recently picked 2 players per role
     return supportPlayers.length === 0 ? (
       <React.Fragment>
         {[1, 2].map(i => <SupportForm key={i} player='Support' />)}
@@ -47,7 +50,19 @@ class RosterForm extends React.Component{
      )
   }
 
+  handleButtonClick = () => {
+    this.props.handleSaveButtonClick({
+      tank1: this.props.draftedTanks[0] ? this.props.draftedTanks[0].id : undefined,
+      tank2: this.props.draftedTanks[1] ? this.props.draftedTanks[1].id : undefined,
+      damage1: this.props.draftedDamage[0] ? this.props.draftedDamage[0].id : undefined,
+      damage2: this.props.draftedDamage[1] ? this.props.draftedDamage[1].id : undefined,
+      support1: this.props.draftedSupport[0] ? this.props.draftedSupport[0].id : undefined,
+      support2: this.props.draftedSupport[1] ? this.props.draftedSupport[1].id : undefined
+    });
+  }
+
   render(){
+    console.log('savedState: ', this.props.savedState);
     return(
       <div className={styles['roster-form-container']}>
         <div className={styles['header']}>
@@ -70,9 +85,26 @@ class RosterForm extends React.Component{
             </ul>
           </div>
         </div>
-        <button className={styles['btn']}>Save</button>
+        <button 
+          className={cx(styles['btn'], `${this.props.savedState.isSuccessfullySaved ? styles['checked'] : ''}`)}
+          onClick={this.handleButtonClick}
+        >
+          {this.props.savedState.isSuccessfullySaved ? String.fromCharCode('10003') : 'Save'}
+        </button>
       </div>
     )
   }
 }
-export default RosterForm;
+
+const mapStateToProps = state => {
+  return {
+    draftedTanks: getCurrentlyDraftedTankPlayers(state),
+    draftedDamage: getCurrentlyDraftedDamagePlayers(state),
+    draftedSupport: getCurrentlyDraftedSupportPlayers(state),
+    savedState: state.draftSaved
+  };
+}
+
+export default connect(mapStateToProps)(RosterForm);
+
+//export default RosterForm;

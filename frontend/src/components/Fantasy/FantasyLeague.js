@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {fetchPlayers, fetchPlayersStats, getRoleFilter, draftPlayer} from '../../actions/FantasyLeagueActions';
+import {fetchPlayers, fetchPlayersStats, getRoleFilter, draftPlayer, saveDraft} from '../../actions/FantasyLeagueActions';
 import PlayerCard from './PlayerCard';
 import RosterForm from './RosterForm';
 import { roleIcons } from './RoleIcons';
@@ -23,6 +23,11 @@ class FantasyLeague extends React.Component{
 
   handleDraftButtonClick = player => {
     this.props.draftPlayer(player);
+  }
+
+  handleSaveButtonClick = formValues => {
+    console.log('formValues from save: ', formValues)
+    this.props.saveDraft(formValues);
   }
 
   renderPlayersList(){
@@ -57,6 +62,7 @@ class FantasyLeague extends React.Component{
         </div>
         <RosterForm
           draft={this.props.draft}
+          handleSaveButtonClick={this.handleSaveButtonClick}
         />
       </div>
     )
@@ -71,4 +77,4 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, {fetchPlayers, fetchPlayersStats, getRoleFilter, draftPlayer})(FantasyLeague);
+export default connect(mapStateToProps, {fetchPlayers, fetchPlayersStats, getRoleFilter, draftPlayer, saveDraft})(FantasyLeague);

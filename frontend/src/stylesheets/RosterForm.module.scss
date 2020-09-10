@@ -33,12 +33,19 @@
     background-color: #F6B352;
     border: 0px;
     width: 40%;
+    height: 18px;
     font-size: 12px;
     color: color(text);
     letter-spacing: 2px;
     text-transform: uppercase;
     &:hover{
       cursor: pointer;
+    }
+    &.checked{
+      width: 10%;
+      background-color: #58C9B9;
+      color: color(background);
+      border-radius: 50%;
     }
   }
 }

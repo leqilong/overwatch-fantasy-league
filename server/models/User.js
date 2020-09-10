@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const predictionSchema = require('./Prediction').schema;
+const draftSchema = require('./Draft').schema;
 
 const SALT_WORK_FACTOR = 10;
 
@@ -19,6 +20,7 @@ const userSchema = new mongoose.Schema({
     default: Date.now
   },
   predictions: [predictionSchema],
+  draft: draftSchema,
   score: {
     type: Number,
     default: 0

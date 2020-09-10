@@ -9,6 +9,7 @@ import playerReducer from './playerReducer';
 import statsReducer from './statsReducer';
 import roleFilterReducer from './roleFilterReducer';
 import draftReducer from './draftReducer';
+import draftSavedReducer from './draftSavedReducer';
 
 export default combineReducers({
   predictions: predictionReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
   players: playerReducer,
   stats: statsReducer,
   roleFilter: roleFilterReducer,
-  draft: draftReducer
+  draft: draftReducer,
+  draftSaved: draftSavedReducer
 });
