@@ -5,7 +5,7 @@ export default (state=[], action) => {
     case 'DRAFT_PLAYER':
       return [..._.uniqBy([...state, ...[action.payload]], 'id')];
     case 'FETCH_DRAFT':
-      return {...state, ..._.mapKeys(action.payload, 'id')};
+      return [...action.payload];
     default:
       return state;
   }

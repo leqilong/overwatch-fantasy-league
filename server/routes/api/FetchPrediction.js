@@ -5,7 +5,6 @@ module.exports = (app) => {
     const filter = {"matchId": req.params.id, "username": req.userData.username};
     predictionsController.findByMatchId(filter, function(err, results){
         if(err){
-            console.log(err);
             res.json({
                 error: err
             });

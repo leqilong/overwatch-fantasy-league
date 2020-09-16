@@ -1,26 +1,12 @@
 const mongoose = require('mongoose');
+const playerSchema = require('./Player').schema;
 
 const draftSchema = new mongoose.Schema({
   username: {
     type: String
   },
-  tank1: {
-    type: Number
-  },
-  tank2: {
-    type: Number
-  },
-  damage1: {
-    type: Number
-  },
-  damage2: {
-    type: Number
-  },
-  support1: {
-    type: Number
-  },
-  support2: {
-    type: Number
+  players: {
+    type: [playerSchema]
   }
 })
 

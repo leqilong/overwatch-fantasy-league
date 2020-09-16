@@ -5,7 +5,6 @@ module.exports = (app) => {
   app.put('/draft', authCheckMiddleware, (req, res) => {
     draftController.save(req.userData.username, req.body, function(err, result){
       if(err){
-        console.log(err);
         res.json({
           error: err
         })

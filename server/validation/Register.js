@@ -2,8 +2,6 @@ const validator = require('validator');
 const isEmpty = require('./IsEmpty');
 
 module.exports = function validateRegisterInput(data){
-  console.log('from validator');
-  console.log(data);
   let errors = {};
   data.username = !isEmpty(data.username) ? data.username : '';
   data.password = !isEmpty(data.password) ? data.password : '';

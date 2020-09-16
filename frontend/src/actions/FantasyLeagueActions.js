@@ -24,12 +24,12 @@ export const draftPlayer = player => async (dispatch, getState) => {
 export const saveDraft = formValues => async (dispatch, getState) => {
   const {username} = getState().auth;
   const response = await fantasy.put('/draft', {...formValues, username});
-  console.log(response)
   dispatch({type: SAVE_DRAFT, payload: response.data});
 }
 
 export const fetchDraft = () => async (dispatch, getState) => {
   const {username} = getState().auth;
   const response = await fantasy.get('/draft', {username});
+  console.log('returned draft', response);
   dispatch({type: FETCH_DRAFT, payload: response.data});
 }

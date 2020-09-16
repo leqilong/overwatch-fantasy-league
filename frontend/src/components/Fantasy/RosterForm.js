@@ -51,18 +51,20 @@ class RosterForm extends React.Component{
   }
 
   handleButtonClick = () => {
-    this.props.handleSaveButtonClick({
-      tank1: this.props.draftedTanks[0] ? this.props.draftedTanks[0].id : undefined,
-      tank2: this.props.draftedTanks[1] ? this.props.draftedTanks[1].id : undefined,
-      damage1: this.props.draftedDamage[0] ? this.props.draftedDamage[0].id : undefined,
-      damage2: this.props.draftedDamage[1] ? this.props.draftedDamage[1].id : undefined,
-      support1: this.props.draftedSupport[0] ? this.props.draftedSupport[0].id : undefined,
-      support2: this.props.draftedSupport[1] ? this.props.draftedSupport[1].id : undefined
-    });
+    this.props.handleSaveButtonClick(
+      {
+        players: [
+          this.props.draftedTanks[0] ? this.props.draftedTanks[0] : undefined,
+          this.props.draftedTanks[1] ? this.props.draftedTanks[1] : undefined,
+          this.props.draftedDamage[0] ? this.props.draftedDamage[0] : undefined,
+          this.props.draftedDamage[1] ? this.props.draftedDamage[1] : undefined,
+          this.props.draftedSupport[0] ? this.props.draftedSupport[0] : undefined,
+          this.props.draftedSupport[1] ? this.props.draftedSupport[1] : undefined
+        ]
+      });
   }
 
   render(){
-    console.log('savedState: ', this.props.savedState);
     return(
       <div className={styles['roster-form-container']}>
         <div className={styles['header']}>

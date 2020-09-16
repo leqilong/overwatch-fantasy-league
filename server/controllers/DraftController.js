@@ -8,27 +8,21 @@ module.exports = {
         callback(err, null);
           return;
         }
-      callback(null, results);
+      console.log('FIND!!!!', results);
+      callback(null, results[0].players);
     });
   },
   save: function(username, params, callback){
     const filter = {"username": username};
-    User.findOne(filter, function(err, user){
+    const options = { upsert: true, new: true, setDefaultsOnInsert: true };
+
+    Draft.findOneAndUpdate(filter, params, options, function(err, result){
       if(err){
         callback(err, null);
         return;
       }
-      Draft.create(params, function(err, result){
-        if(err){
-          callback(err, null);
-          return;
-        }
-
-        console.log(result);
-        user.draft = result;
-        user.save();
-        callback(null, result);
-      });
+      console.log('UPDATE!!!!', result);
+      callback(null, result);
     });
   }
 }

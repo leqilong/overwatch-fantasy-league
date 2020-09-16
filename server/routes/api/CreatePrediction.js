@@ -5,7 +5,6 @@ module.exports = (app) => {
   app.post('/predictions', authCheckMiddleware, (req, res) => {
     predictionsController.create(req.userData.username, req.body, function(err, result){
       if(err){
-        console.log(err);
         res.json({
           error: err
         })

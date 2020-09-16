@@ -37,7 +37,6 @@ module.exports = {
     const newUser = new User({username, password});
     newUser.save(function(err, user){
       if(err){
-        console.log(err)
         callback(err, null);
         return;
       }

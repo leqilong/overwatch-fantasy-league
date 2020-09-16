@@ -6,7 +6,6 @@ module.exports = (app) => {
     req.body.username=req.userData.username;
     predictionsController.update({"matchId": req.params.id}, req.body, function(err, results){
         if(err){
-            console.log(err);
             res.json({
                 error: err
             });
