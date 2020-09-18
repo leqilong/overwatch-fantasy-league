@@ -16,7 +16,7 @@ class RosterForm extends React.Component{
       </React.Fragment>
     ) : (
       <React.Fragment>
-        {tankPlayers.map(player => <TankForm key={player.id} player={player.name} /> )}
+        {tankPlayers.map(player => <TankForm key={player.id} player={player} handleUndraft={this.handleUndraft} /> )}
         {tankPlayers.length === 1 ? <TankForm player='Tank' /> : ''}
       </React.Fragment>
     )
@@ -30,7 +30,7 @@ class RosterForm extends React.Component{
       </React.Fragment>
     ) : (
       <React.Fragment>
-        {damagePlayers.map(player => <DamageForm key={player.id} player={player.name} />)}
+        {damagePlayers.map(player => <DamageForm key={player.id} player={player} handleUndraft={this.handleUndraft} />)}
         {damagePlayers.length === 1 ? <DamageForm player='Damage' /> : ''}
       </React.Fragment>
     )
@@ -44,10 +44,14 @@ class RosterForm extends React.Component{
       </React.Fragment>
     ) : (
       <React.Fragment>
-       {supportPlayers.map(player => <SupportForm key={player.id} player={player.name} />)}
+       {supportPlayers.map(player => <SupportForm key={player.id} player={player} handleUndraft={this.handleUndraft} />)}
        {supportPlayers.length === 1 ? <SupportForm player='Support' /> : ''}
       </React.Fragment>
      )
+  }
+
+  handleUndraft = player => {
+    this.props.handleRemoveButtonClick(player);
   }
 
   handleButtonClick = () => {
