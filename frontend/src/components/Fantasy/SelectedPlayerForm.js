@@ -1,7 +1,6 @@
 import React from 'react';
 
-const TankForm = (props) => {
-
+const SelectedPlayerForm = (props) => {
   const handleClick = () => {
     if (props.handleUndraft) {
       props.handleUndraft(props.player);
@@ -15,4 +14,4 @@ const TankForm = (props) => {
   )
 }
 
-export default TankForm;
+export default SelectedPlayerForm;

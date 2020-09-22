@@ -35,7 +35,6 @@ module.exports = function validateRegisterInput(data){
     errors.passwordConfirm = 'Password and password confirmation must match';
   }
 
-  console.log(errors);
   return{
     errors,
     isValid: isEmpty(errors)

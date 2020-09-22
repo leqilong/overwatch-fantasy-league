@@ -1,53 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TankForm from './TankForm';
-import DamageForm from './DamageForm';
-import SupportForm from './SupportForm';
+import SelectedPlayerForm from './SelectedPlayerForm';
 import styles from'../../stylesheets/RosterForm.module.scss';
 import cx from 'classnames';
 import { getCurrentlyDraftedTankPlayers, getCurrentlyDraftedDamagePlayers, getCurrentlyDraftedSupportPlayers } from '../../selectors/playersSelectors';
 
 class RosterForm extends React.Component{
-  renderTankRosterList = () => {
-    const tankPlayers = this.props.draft.filter(player => player.role === 'tank').slice(-2); //get the most recently picked 2 players per role
-    return tankPlayers.length === 0 ? (
+
+  renderRoleList = (draftedRole, roleName) => {
+    return draftedRole.length === 0 ? (
       <React.Fragment>
-        {[1, 2].map(i => <TankForm key={i} player='Tank' />)}
+        {[1, 2].map( i => <SelectedPlayerForm key={i} player={roleName} />)}
       </React.Fragment>
     ) : (
       <React.Fragment>
-        {tankPlayers.map(player => <TankForm key={player.id} player={player} handleUndraft={this.handleUndraft} /> )}
-        {tankPlayers.length === 1 ? <TankForm player='Tank' /> : ''}
+        {draftedRole.map(player => <SelectedPlayerForm key={player.id} player={player} handleUndraft={this.handleUndraft} />)}
+        {draftedRole.length === 1 ? <SelectedPlayerForm player={roleName} /> : ''}
       </React.Fragment>
     )
-  }
-
-  renderDamageRosterList = () => {
-    const damagePlayers = this.props.draft.filter(player => player.role === 'offense').slice(-2); //get the most recently picked 2 players per role
-    return damagePlayers.length === 0 ? (
-      <React.Fragment>
-        {[1, 2].map(i => <DamageForm key={i} player='Damage' />)}
-      </React.Fragment>
-    ) : (
-      <React.Fragment>
-        {damagePlayers.map(player => <DamageForm key={player.id} player={player} handleUndraft={this.handleUndraft} />)}
-        {damagePlayers.length === 1 ? <DamageForm player='Damage' /> : ''}
-      </React.Fragment>
-    )
-  }
-
-  renderSupportRosterList = () => {
-    const supportPlayers = this.props.draft.filter(player => player.role === 'support').slice(-2); //get the most recently picked 2 players per role
-    return supportPlayers.length === 0 ? (
-      <React.Fragment>
-        {[1, 2].map(i => <SupportForm key={i} player='Support' />)}
-      </React.Fragment>
-    ) : (
-      <React.Fragment>
-       {supportPlayers.map(player => <SupportForm key={player.id} player={player} handleUndraft={this.handleUndraft} />)}
-       {supportPlayers.length === 1 ? <SupportForm player='Support' /> : ''}
-      </React.Fragment>
-     )
   }
 
   handleUndraft = player => {
@@ -75,21 +45,14 @@ class RosterForm extends React.Component{
           Your Lineup
         </div>
         <div className={styles['selection-container']}>
-          <div className={styles['tank-container']}>
-            <ul>
-              {this.renderTankRosterList()}
-            </ul>
-          </div>
-          <div className={styles['damage-container']}>
-            <ul>
-              {this.renderDamageRosterList()}
-            </ul>
-          </div>
-          <div className={styles['support-container']}>
-            <ul>
-              {this.renderSupportRosterList()}
-            </ul>
-          </div>
+          {[[this.props.draftedTanks, 'Tank'], [this.props.draftedDamage, 'Damanage'], [this.props.draftedSupport, 'Support']].map(draftedRole => {
+            return (
+              <div>
+                <ul>
+                  {this.renderRoleList(draftedRole[0], draftedRole[1])}
+                </ul>
+              </div>)
+          })}
         </div>
         <button 
           className={cx(styles['btn'], `${this.props.savedState.isSuccessfullySaved ? styles['checked'] : ''}`)}
