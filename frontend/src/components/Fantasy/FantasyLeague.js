@@ -6,7 +6,6 @@ import RosterForm from './RosterForm';
 import { roleIcons } from './RoleIcons';
 import { getVisiblePlayers } from '../../selectors/playersSelectors';
 import styles from '../../stylesheets/FantasyLeague.module.scss';
-import cx from 'classnames';
 
 
 class FantasyLeague extends React.Component{
@@ -75,7 +74,6 @@ class FantasyLeague extends React.Component{
 }
 
 const mapStateToProps = state => {
-  console.log('state changed! ', state.draft);
   return {
     players: getVisiblePlayers(state),
     stats: state.stats,

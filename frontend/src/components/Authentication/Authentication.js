@@ -27,7 +27,9 @@ class Authentication extends React.Component{
 
   renderDropdownMenuList = (shouldDisplay) => {
     return(
-      <div className={cx(styles['menu-list'],styles[`${shouldDisplay}`])}>
+      <div 
+        className={cx(styles['menu-list'],styles[`${shouldDisplay}`])}
+        onMouseLeave={this.toggleDropdownMenu}>
         <ul>
           <li>{this.props.username}</li>
           <li onClick={this.onLogoutClick}>Log out</li>
@@ -52,7 +54,9 @@ class Authentication extends React.Component{
       <div>
         <div className={styles['header-item']}>
           <div className={styles['dropdown-menu']}>
-            <button className={cx(styles['dropdown-menu-icon'], `${this.state.dropdownMenuOpen ? styles['show'] : ''}`)} onClick={this.toggleDropdownMenu}>
+            <button 
+              className={cx(styles['dropdown-menu-icon'], `${this.state.dropdownMenuOpen ? styles['show'] : ''}`)} 
+              onMouseEnter={this.toggleDropdownMenu}>
               <DropdownMenuIcon />
             </button>
           </div>
