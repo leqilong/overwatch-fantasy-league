@@ -22,5 +22,4 @@ export const DRAFT_PLAYER = 'DRAFT_PLAYER';
 export const UNDRAFT_PLAYER = 'UNDRAFT_PLAYER';
 export const SAVE_DRAFT = 'SAVE_DRAFT';
 export const FETCH_DRAFT = 'FETCH_DRAFT';
-export const MAKE_CHANGE_IN_DRAFT = 'MAKE_CHANGE_IN_DRAFT';
 
